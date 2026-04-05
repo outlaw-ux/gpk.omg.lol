@@ -11,10 +11,10 @@ export const siteMeta = {
   domain: 'gpk.omg.lol',
   logoSrc: `${import.meta.env.BASE_URL}brand/the-guild-hall-logo.png`,
   emblemSrc: `${import.meta.env.BASE_URL}brand/the-guild-hall-emblem.png`,
-  eyebrow: 'Curated archive for cardboard obsessives',
-  heroTitle: 'A collector-first hub for trading card buyers, sellers, and traders.',
+  eyebrow: 'Garbage Pail Kids resource hub',
+  heroTitle: 'Live links for Garbage Pail Kids collectors, sellers, and traders.',
   heroDescription:
-    'The Guild Hall brings together trusted links, market references, release intel, and hobby utilities in one calm, polished website. It starts as a curated resource index now and can grow into a full library later.'
+    'The Guild Hall brings together the live resources people use right now, including GeePeeKay.com, GPKNews, Whatnot links, and practical shipping tools.'
 };
 
 export const navigationLinks: NavigationLink[] = [
@@ -23,18 +23,16 @@ export const navigationLinks: NavigationLink[] = [
   { href: '#submit', label: 'Contribute' }
 ];
 
-// Keep the initial content data-driven so future search, tags, and featured logic
-// can evolve without rewriting the layout components.
 export const featuredResources: ResourceEntry[] = [
   {
     id: 'request-an-item',
     title: 'Request an Item',
     category: 'Collector Requests',
     description:
-      'Tell us what you are hunting for and make that request the starting point. This is the clearest way to shape what gets sourced, listed, and prioritized next.',
+      'Use the request form to flag the GPK items, sets, or references you want help tracking down.',
     href: 'https://docs.google.com/forms/d/e/1FAIpQLScVFoit_V1vJvJwFbnbNaSuuChJcNO2ukPNXXIfB-WGyIOS7A/viewform?usp=sharing&ouid=114588655259468960497',
-    status: 'Highlighted now',
-    tags: ['Requests', 'Wish list', 'Sourcing'],
+    status: 'Open form',
+    tags: ['Requests', 'Wish list', 'Collector help'],
     ctaLabel: 'Request an item',
     featured: true
   },
@@ -62,14 +60,25 @@ export const featuredResources: ResourceEntry[] = [
   },
   {
     id: 'geepeekay-checklists',
-    title: 'GeePeekay Checklists',
+    title: 'GeePeeKay.com',
     category: 'Checklists',
     description:
-      'The checklist section starts with geepeekay.com, a practical reference for tracking sets, parallels, and collector targets.',
+      'GeePeeKay.com is a practical reference for Garbage Pail Kids checklists, set tracking, and parallel chasing.',
     href: 'https://geepeekay.com',
     status: 'Trusted reference',
     tags: ['Checklists', 'Set tracking', 'Reference'],
-    ctaLabel: 'Open checklist resource'
+    ctaLabel: 'Visit GeePeeKay.com'
+  },
+  {
+    id: 'gpknews',
+    title: 'GPKNews',
+    category: 'News',
+    description:
+      'GPKNews covers Garbage Pail Kids news, product information, hobby updates, and reference posts collectors actually use.',
+    href: 'https://gpknews.com',
+    status: 'Live coverage',
+    tags: ['News', 'Products', 'Updates'],
+    ctaLabel: 'Read GPKNews'
   },
   {
     id: 'pirate-ship',
@@ -81,95 +90,45 @@ export const featuredResources: ResourceEntry[] = [
     status: 'Money saver',
     tags: ['Shipping', 'Labels', 'Savings'],
     ctaLabel: 'Open Pirate Ship'
-  },
-  {
-    id: 'community-links',
-    title: 'Community Links',
-    category: 'Community',
-    description:
-      'A short list of hobby spaces, helpful creators, and online channels where collector knowledge compounds.',
-    href: 'https://example.com/resources/community-links',
-    status: 'Curated list',
-    tags: ['Communities', 'Creators', 'Learning'],
-    ctaLabel: 'Open placeholder resource'
-  },
-  {
-    id: 'release-trackers',
-    title: 'Release Trackers',
-    category: 'Product Watch',
-    description:
-      'Upcoming products, hobby dates, and release windows organized into a calmer view of the calendar.',
-    href: 'https://example.com/resources/release-trackers',
-    status: 'Always useful',
-    tags: ['Releases', 'Calendar', 'Watchlist'],
-    ctaLabel: 'Open placeholder resource'
-  },
-  {
-    id: 'vintage-card-resources',
-    title: 'Vintage Card Resources',
-    category: 'Historic Cardboard',
-    description:
-      'References for older sets, grading context, archival checklists, and era-specific buying wisdom.',
-    href: 'https://example.com/resources/vintage-card-resources',
-    status: 'Deep archive',
-    tags: ['Vintage', 'Archival', 'Condition'],
-    ctaLabel: 'Open placeholder resource'
-  },
-  {
-    id: 'non-sports-card-resources',
-    title: 'Non-Sports Card Resources',
-    category: 'Beyond Sports',
-    description:
-      'A home for entertainment, oddball, and cross-category resources that serious collectors still need.',
-    href: 'https://example.com/resources/non-sports-card-resources',
-    status: 'Growing lane',
-    tags: ['Non-sports', 'Oddball', 'Cross-collecting'],
-    ctaLabel: 'Open placeholder resource'
   }
 ];
 
-const liveResourceCount = featuredResources.filter(
-  (resource) => !resource.href.includes('example.com')
-).length;
+const liveResourceCount = featuredResources.length;
 
 export const heroHighlights: HeroHighlight[] = [
   { label: 'Links', value: `${liveResourceCount} live resources` },
   { label: 'Focus', value: 'Buy, sell, trade' },
-  { label: 'Next', value: 'Searchable library' }
+  { label: 'Includes', value: 'GeePeeKay.com + GPKNews' }
 ];
 
 export const resourceCategories: ResourceCategory[] = [
   {
     id: 'market-intel',
-    name: 'Market Intel',
+    name: 'Market Links',
     description:
-      'Active links for buyer invites, seller invites, and practical tools that help hobby traffic keep moving.',
-    itemCountLabel: '2 live entries',
-    futureModules: ['Price history', 'Trending tags', 'Featured analysts']
+      'Live links for buyers and sellers using Whatnot, plus a shipping tool that helps keep transactions efficient.',
+    itemCountLabel: '3 live links'
   },
   {
-    id: 'set-building',
-    name: 'Set Building',
+    id: 'checklists-and-news',
+    name: 'Checklists and News',
     description:
-      'Checklists, release notes, and collector aids for turning scattered links into usable set knowledge.',
-    itemCountLabel: '1 live entry',
-    futureModules: ['Master checklists', 'Parallel filters', 'Want-list tools']
+      'Current references for checklist research, set tracking, product coverage, and everyday hobby updates.',
+    itemCountLabel: '2 live links'
   },
   {
     id: 'shipping-and-logistics',
     name: 'Shipping and Logistics',
     description:
-      'Packing standards, postage savings, and practical references for safer, cleaner transactions.',
-    itemCountLabel: '1 live entry',
-    futureModules: ['Packing guides', 'Supply tags', 'Rate calculators']
+      'A practical lane for saving money on labels and making routine order fulfillment easier.',
+    itemCountLabel: '1 live link'
   },
   {
-    id: 'community-and-learning',
-    name: 'Community and Learning',
+    id: 'collector-help',
+    name: 'Collector Help',
     description:
-      'Trusted hobby spaces, guides, request flows, and voices that make the category more legible without the noise.',
-    itemCountLabel: '1 featured action',
-    futureModules: ['Creator spotlights', 'Beginner paths', 'Submission queue']
+      'A direct path for collectors who want to request help finding a specific item or resource.',
+    itemCountLabel: '1 live form'
   }
 ];
 
@@ -177,5 +136,6 @@ export const footerLinks: FooterLink[] = [
   { label: 'Facebook', href: 'https://www.facebook.com/curatorgpk/' },
   { label: 'Instagram', href: 'https://www.instagram.com/thecuratorsguild/' },
   { label: 'Whatnot Shop', href: 'https://whatnot.com/invite/curatorsguild' },
-  { label: 'GeePeekay', href: 'https://geepeekay.com' }
+  { label: 'GeePeeKay.com', href: 'https://geepeekay.com' },
+  { label: 'GPKNews', href: 'https://gpknews.com' }
 ];

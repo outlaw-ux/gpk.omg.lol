@@ -20,7 +20,6 @@ export type ResourceCategory = {
   name: string;
   description: string;
   itemCountLabel: string;
-  futureModules: string[];
 };
 
 export type FooterLink = {

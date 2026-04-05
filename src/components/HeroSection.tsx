@@ -46,7 +46,7 @@ export function HeroSection({
         <aside className="hero-panel" aria-label="Guild Hall highlights">
           <div className="hero-panel__cap">What this site does</div>
           <p className="hero-panel__lead">
-            A calm starting index for people who research before they rip, list, buy, or trade.
+            A direct list of live links for checklists, news, buying, selling, and shipping.
           </p>
 
           <dl className="hero-panel__stats">
@@ -58,10 +58,7 @@ export function HeroSection({
             ))}
           </dl>
 
-          <div className="hero-panel__note">
-            Built as version one of a larger resource library with room for tags, searchable entries,
-            featured references, and guided submissions.
-          </div>
+          <div className="hero-panel__note">Everything here points to a live resource available today.</div>
         </aside>
       </div>
     </section>

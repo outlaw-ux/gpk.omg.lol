@@ -42,8 +42,8 @@ function App() {
             <SectionHeader
               id="featured-heading"
               overline="Featured Resources"
-              title="Useful starting points for pricing, tracking, and smarter trading."
-              description="The first release focuses on dependable reference links. Each card is data-driven so the site can grow into searchable entries, featured picks, and richer metadata later."
+              title="Live links for checklists, news, invites, and shipping."
+              description="These are the active resources on the site right now. No placeholders, no teaser sections, just links people can use today."
             />
 
             <div className="resource-grid" role="list">
@@ -60,9 +60,9 @@ function App() {
           <div className="shell">
             <SectionHeader
               id="categories-heading"
-              overline="Collection Lanes"
-              title="Category tiles built to expand into a real library."
-              description="Each lane is framed like a future section: clear now, but ready for tags, searchable entries, featured lists, and submission workflows."
+              overline="Current Categories"
+              title="The resources are organized by what they help you do today."
+              description="Browse the current mix of market links, checklist and news references, shipping tools, and collector help."
             />
 
             <div className="category-grid" role="list">
