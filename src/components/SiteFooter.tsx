@@ -18,9 +18,9 @@ export function SiteFooter({ domain, emblemSrc, links }: SiteFooterProps) {
           <p className="section-overline">The Guild Hall</p>
           <h2>Garbage Pail Kids links that are useful right now.</h2>
           <p>
-            Hosted at <span>{domain}</span>, The Guild Hall is a straightforward hub for live
-            Garbage Pail Kids resources, including GeePeeKay.com, GPKNews, Whatnot links, and
-            shipping help.
+            Hosted at <span>{domain}</span>, The Guild Hall brings together GeePeeKay.com,
+            GPKNews, PriceCharting, 130Point, Whatnot links, and shipping help for the GPK
+            community.
           </p>
         </div>
 

@@ -44,9 +44,9 @@ export function HeroSection({
         </div>
 
         <aside className="hero-panel" aria-label="Guild Hall highlights">
-          <div className="hero-panel__cap">What this site does</div>
+          <div className="hero-panel__cap">Start here</div>
           <p className="hero-panel__lead">
-            A direct list of live links for checklists, news, buying, selling, and shipping.
+            Checklists, news, pricing, sold comps, buying, selling, and shipping in one place.
           </p>
 
           <dl className="hero-panel__stats">
@@ -58,7 +58,9 @@ export function HeroSection({
             ))}
           </dl>
 
-          <div className="hero-panel__note">Everything here points to a live resource available today.</div>
+          <div className="hero-panel__note">
+            Use GeePeeKay.com for checklists, GPKNews for updates, and PriceCharting or 130Point for comps.
+          </div>
         </aside>
       </div>
     </section>

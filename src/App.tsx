@@ -42,8 +42,8 @@ function App() {
             <SectionHeader
               id="featured-heading"
               overline="Featured Resources"
-              title="Live links for checklists, news, invites, and shipping."
-              description="These are the active resources on the site right now. No placeholders, no teaser sections, just links people can use today."
+              title="Checklists, news, pricing, comps, invites, and shipping."
+              description="Use GeePeeKay.com, GPKNews, PriceCharting, 130Point, Whatnot, and Pirate Ship from one page."
             />
 
             <div className="resource-grid" role="list">
@@ -61,8 +61,8 @@ function App() {
             <SectionHeader
               id="categories-heading"
               overline="Current Categories"
-              title="The resources are organized by what they help you do today."
-              description="Browse the current mix of market links, checklist and news references, shipping tools, and collector help."
+              title="Resources organized by what you need."
+              description="Browse pricing and sales comps, checklist and news references, shipping tools, and collector help."
             />
 
             <div className="category-grid" role="list">

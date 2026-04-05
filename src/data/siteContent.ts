@@ -14,7 +14,7 @@ export const siteMeta = {
   eyebrow: 'Garbage Pail Kids resource hub',
   heroTitle: 'Live links for Garbage Pail Kids collectors, sellers, and traders.',
   heroDescription:
-    'The Guild Hall brings together the live resources people use right now, including GeePeeKay.com, GPKNews, Whatnot links, and practical shipping tools.'
+    'The Guild Hall brings together GeePeeKay.com, GPKNews, PriceCharting, 130Point, Whatnot links, and practical shipping tools for Garbage Pail Kids collectors.'
 };
 
 export const navigationLinks: NavigationLink[] = [
@@ -81,6 +81,28 @@ export const featuredResources: ResourceEntry[] = [
     ctaLabel: 'Read GPKNews'
   },
   {
+    id: 'pricecharting',
+    title: 'PriceCharting',
+    category: 'Pricing',
+    description:
+      'PriceCharting gives collectors a quick way to check market values, recent price history, and category-wide pricing data.',
+    href: 'https://www.pricecharting.com',
+    status: 'Pricing guide',
+    tags: ['Pricing', 'Comps', 'Market value'],
+    ctaLabel: 'Open PriceCharting'
+  },
+  {
+    id: '130point',
+    title: '130Point',
+    category: 'Sales Comps',
+    description:
+      '130Point is useful for checking sold listings and comparing actual sales data when you need better comp work.',
+    href: 'https://130point.com',
+    status: 'Sales comps',
+    tags: ['Comps', 'Sold listings', 'Pricing'],
+    ctaLabel: 'Open 130Point'
+  },
+  {
     id: 'pirate-ship',
     title: 'Pirate Ship',
     category: 'Shipping Savings',
@@ -96,8 +118,8 @@ export const featuredResources: ResourceEntry[] = [
 const liveResourceCount = featuredResources.length;
 
 export const heroHighlights: HeroHighlight[] = [
-  { label: 'Links', value: `${liveResourceCount} live resources` },
-  { label: 'Focus', value: 'Buy, sell, trade' },
+  { label: 'Links', value: `${liveResourceCount} resources` },
+  { label: 'Focus', value: 'Checklists, news, comps' },
   { label: 'Includes', value: 'GeePeeKay.com + GPKNews' }
 ];
 
@@ -106,29 +128,29 @@ export const resourceCategories: ResourceCategory[] = [
     id: 'market-intel',
     name: 'Market Links',
     description:
-      'Live links for buyers and sellers using Whatnot, plus a shipping tool that helps keep transactions efficient.',
-    itemCountLabel: '3 live links'
+      'Buyer and seller links, pricing references, and sales comp tools for making cleaner buying and selling decisions.',
+    itemCountLabel: '4 resources'
   },
   {
     id: 'checklists-and-news',
     name: 'Checklists and News',
     description:
       'Current references for checklist research, set tracking, product coverage, and everyday hobby updates.',
-    itemCountLabel: '2 live links'
+    itemCountLabel: '2 resources'
   },
   {
     id: 'shipping-and-logistics',
     name: 'Shipping and Logistics',
     description:
       'A practical lane for saving money on labels and making routine order fulfillment easier.',
-    itemCountLabel: '1 live link'
+    itemCountLabel: '1 resource'
   },
   {
     id: 'collector-help',
     name: 'Collector Help',
     description:
       'A direct path for collectors who want to request help finding a specific item or resource.',
-    itemCountLabel: '1 live form'
+    itemCountLabel: '1 form'
   }
 ];
 
@@ -137,5 +159,7 @@ export const footerLinks: FooterLink[] = [
   { label: 'Instagram', href: 'https://www.instagram.com/thecuratorsguild/' },
   { label: 'Whatnot Shop', href: 'https://whatnot.com/invite/curatorsguild' },
   { label: 'GeePeeKay.com', href: 'https://geepeekay.com' },
-  { label: 'GPKNews', href: 'https://gpknews.com' }
+  { label: 'GPKNews', href: 'https://gpknews.com' },
+  { label: 'PriceCharting', href: 'https://www.pricecharting.com' },
+  { label: '130Point', href: 'https://130point.com' }
 ];
