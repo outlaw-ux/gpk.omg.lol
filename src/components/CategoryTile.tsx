@@ -16,12 +16,6 @@ export function CategoryTile({ category }: CategoryTileProps) {
 
       <h3>{category.name}</h3>
       <p className="category-tile__description">{category.description}</p>
-
-      <div className="category-tile__future">
-        {category.futureModules.map((module) => (
-          <span key={module}>{module}</span>
-        ))}
-      </div>
     </article>
   );
 }

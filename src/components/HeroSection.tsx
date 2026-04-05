@@ -44,9 +44,9 @@ export function HeroSection({
         </div>
 
         <aside className="hero-panel" aria-label="Guild Hall highlights">
-          <div className="hero-panel__cap">What this site does</div>
+          <div className="hero-panel__cap">Start here</div>
           <p className="hero-panel__lead">
-            A calm starting index for people who research before they rip, list, buy, or trade.
+            Checklists, news, pricing, sold comps, buying, selling, and shipping in one place.
           </p>
 
           <dl className="hero-panel__stats">
@@ -59,8 +59,7 @@ export function HeroSection({
           </dl>
 
           <div className="hero-panel__note">
-            Built as version one of a larger resource library with room for tags, searchable entries,
-            featured references, and guided submissions.
+            Use GeePeeKay.com for checklists, GPKNews for updates, and PriceCharting or 130Point for comps.
           </div>
         </aside>
       </div>

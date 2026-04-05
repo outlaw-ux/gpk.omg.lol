@@ -42,8 +42,8 @@ function App() {
             <SectionHeader
               id="featured-heading"
               overline="Featured Resources"
-              title="Useful starting points for pricing, tracking, and smarter trading."
-              description="The first release focuses on dependable reference links. Each card is data-driven so the site can grow into searchable entries, featured picks, and richer metadata later."
+              title="Checklists, news, pricing, comps, invites, and shipping."
+              description="Use GeePeeKay.com, GPKNews, PriceCharting, 130Point, Whatnot, and Pirate Ship from one page."
             />
 
             <div className="resource-grid" role="list">
@@ -60,9 +60,9 @@ function App() {
           <div className="shell">
             <SectionHeader
               id="categories-heading"
-              overline="Collection Lanes"
-              title="Category tiles built to expand into a real library."
-              description="Each lane is framed like a future section: clear now, but ready for tags, searchable entries, featured lists, and submission workflows."
+              overline="Current Categories"
+              title="Resources organized by what you need."
+              description="Browse pricing and sales comps, checklist and news references, shipping tools, and collector help."
             />
 
             <div className="category-grid" role="list">
