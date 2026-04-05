@@ -190,8 +190,7 @@
 
 .hero-panel__cap,
 .hero-panel__lead,
-.hero-panel__stats,
-.hero-panel__note {
+.hero-panel__actions {
   position: relative;
 }
 
@@ -215,21 +214,37 @@
   line-height: 1.45;
 }
 
-.hero-panel__stats {
+.hero-panel__actions {
   display: grid;
-  gap: 0.75rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.8rem;
   margin-top: 1.5rem;
 }
 
-.hero-panel__stat {
-  padding: 0.95rem 1rem;
+.hero-action-card {
+  display: block;
+  padding: 1rem;
   border: 1px solid rgba(143, 165, 255, 0.12);
   border-radius: 1rem;
   background: rgba(5, 10, 21, 0.36);
   backdrop-filter: blur(10px);
+  transition:
+    transform 180ms ease,
+    border-color 180ms ease,
+    background-color 180ms ease,
+    box-shadow 180ms ease;
 }
 
-.hero-panel__stat dt {
+.hero-action-card:hover,
+.hero-action-card:focus-visible {
+  transform: translateY(-2px);
+  border-color: rgba(77, 184, 255, 0.34);
+  background: rgba(8, 14, 28, 0.56);
+  box-shadow: 0 18px 36px rgba(0, 0, 0, 0.28);
+  outline: none;
+}
+
+.hero-action-card__label {
   color: var(--color-electric);
   font-size: 0.76rem;
   font-weight: 800;
@@ -237,22 +252,31 @@
   letter-spacing: 0.08em;
 }
 
-.hero-panel__stat dd {
+.hero-action-card__title {
   margin-top: 0.45rem;
   color: var(--color-text);
   font-family: var(--font-display);
   font-size: 1.1rem;
   font-weight: 700;
-  text-align: left;
   line-height: 1.25;
 }
 
-.hero-panel__note {
-  margin-top: 1.15rem;
-  padding: 0.15rem 0 0.15rem 1rem;
-  border-left: 2px solid rgba(77, 184, 255, 0.32);
+.hero-action-card__description {
+  margin-top: 0.55rem;
   color: var(--color-text-soft);
-  line-height: 1.7;
+  line-height: 1.65;
+}
+
+.hero-action-card__cta {
+  display: inline-flex;
+  margin-top: 0.85rem;
+  color: var(--color-text);
+  font-weight: 800;
+}
+
+.hero-action-card:hover .hero-action-card__cta,
+.hero-action-card:focus-visible .hero-action-card__cta {
+  color: var(--color-electric);
 }
 
 .content-section {
@@ -494,6 +518,10 @@
 
   .hero-copy h1 {
     max-width: 14ch;
+  }
+
+  .hero-panel__actions {
+    grid-template-columns: 1fr;
   }
 
   .category-grid {
