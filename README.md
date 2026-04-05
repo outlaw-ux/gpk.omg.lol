@@ -21,4 +21,4 @@ npm run dev
 npm run build
 ```
 
-The site is configured for GitHub Pages and includes a `public/CNAME` for `omg.gpk.lol`.
+The site is configured for GitHub Pages and includes a `public/CNAME` for `gpk.omg.lol`.

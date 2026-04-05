@@ -8,7 +8,7 @@ import type {
 
 export const siteMeta = {
   name: 'The Guild Hall',
-  domain: 'omg.gpk.lol',
+  domain: 'gpk.omg.lol',
   logoSrc: `${import.meta.env.BASE_URL}brand/the-guild-hall-logo.png`,
   emblemSrc: `${import.meta.env.BASE_URL}brand/the-guild-hall-emblem.png`,
   eyebrow: 'Curated archive for cardboard obsessives',
@@ -21,12 +21,6 @@ export const navigationLinks: NavigationLink[] = [
   { href: '#resources', label: 'Resources' },
   { href: '#categories', label: 'Categories' },
   { href: '#submit', label: 'Contribute' }
-];
-
-export const heroHighlights: HeroHighlight[] = [
-  { label: 'Links', value: '4 live resources' },
-  { label: 'Focus', value: 'Buy, sell, trade' },
-  { label: 'Next', value: 'Searchable library' }
 ];
 
 // Keep the initial content data-driven so future search, tags, and featured logic
@@ -132,6 +126,16 @@ export const featuredResources: ResourceEntry[] = [
     tags: ['Non-sports', 'Oddball', 'Cross-collecting'],
     ctaLabel: 'Open placeholder resource'
   }
+];
+
+const liveResourceCount = featuredResources.filter(
+  (resource) => !resource.href.includes('example.com')
+).length;
+
+export const heroHighlights: HeroHighlight[] = [
+  { label: 'Links', value: `${liveResourceCount} live resources` },
+  { label: 'Focus', value: 'Buy, sell, trade' },
+  { label: 'Next', value: 'Searchable library' }
 ];
 
 export const resourceCategories: ResourceCategory[] = [
