@@ -109,13 +109,6 @@
   letter-spacing: -0.04em;
 }
 
-.hero-copy__logo {
-  width: min(100%, 26rem);
-  margin-bottom: 1.1rem;
-  object-fit: contain;
-  filter: drop-shadow(0 18px 48px rgba(95, 121, 255, 0.22));
-}
-
 .hero-copy__description {
   max-width: 56ch;
   margin-top: 1.4rem;

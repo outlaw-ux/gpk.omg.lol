@@ -2,14 +2,15 @@ import type {
   FooterLink,
   HeroAction,
   NavigationLink,
-  ResourceCategory,
   ResourceEntry
 } from '../types/content';
+
+export const requestFormUrl =
+  'https://docs.google.com/forms/d/e/1FAIpQLScVFoit_V1vJvJwFbnbNaSuuChJcNO2ukPNXXIfB-WGyIOS7A/viewform?usp=sharing&ouid=114588655259468960497';
 
 export const siteMeta = {
   name: 'The Guild Hall',
   domain: 'gpk.omg.lol',
-  logoSrc: `${import.meta.env.BASE_URL}brand/the-guild-hall-logo.png`,
   emblemSrc: `${import.meta.env.BASE_URL}brand/the-guild-hall-emblem.png`,
   eyebrow: 'Useful GPK links, not filler',
   heroTitle: 'Skip the tab hunt.',
@@ -19,8 +20,10 @@ export const siteMeta = {
 
 export const navigationLinks: NavigationLink[] = [
   { href: '#resources', label: 'Resources' },
-  { href: '#categories', label: 'Categories' },
-  { href: '#submit', label: 'Contribute' }
+  {
+    href: requestFormUrl,
+    label: 'Contribute'
+  }
 ];
 
 export const featuredResources: ResourceEntry[] = [
@@ -30,7 +33,7 @@ export const featuredResources: ResourceEntry[] = [
     category: 'Collector Requests',
     description:
       'Put the missing card, set, or reference on the radar when the trail goes cold.',
-    href: 'https://docs.google.com/forms/d/e/1FAIpQLScVFoit_V1vJvJwFbnbNaSuuChJcNO2ukPNXXIfB-WGyIOS7A/viewform?usp=sharing&ouid=114588655259468960497',
+    href: requestFormUrl,
     status: 'Need help?',
     tags: ['Requests', 'Wish list', 'Collector help'],
     ctaLabel: 'Send a request',
@@ -143,37 +146,6 @@ export const heroActions: HeroAction[] = [
     description: 'Print the label and move on once the deal is done.',
     href: 'https://www.pirateship.com',
     ctaLabel: 'Open shipping'
-  }
-];
-
-export const resourceCategories: ResourceCategory[] = [
-  {
-    id: 'market-intel',
-    name: 'Comp Bench',
-    description:
-      'Pricing references, sold comps, and marketplace links for making cleaner buying and selling decisions.',
-    itemCountLabel: '4 tabs'
-  },
-  {
-    id: 'checklists-and-news',
-    name: 'Set Desk',
-    description:
-      'Checklist work, set tracking, product coverage, and hobby updates without the clutter.',
-    itemCountLabel: '2 tabs'
-  },
-  {
-    id: 'shipping-and-logistics',
-    name: 'Shipping Desk',
-    description:
-      'The practical side of the hobby once the deal is done and the label still needs to get made.',
-    itemCountLabel: '1 tab'
-  },
-  {
-    id: 'collector-help',
-    name: 'Help Wanted',
-    description:
-      'A direct way to raise your hand when a card, set, or reference is still missing from the stack.',
-    itemCountLabel: '1 form'
   }
 ];
 

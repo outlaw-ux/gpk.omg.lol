@@ -15,13 +15,6 @@ export type ResourceEntry = {
   featured?: boolean;
 };
 
-export type ResourceCategory = {
-  id: string;
-  name: string;
-  description: string;
-  itemCountLabel: string;
-};
-
 export type FooterLink = {
   label: string;
   href: string;

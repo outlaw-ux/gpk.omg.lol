@@ -2,7 +2,6 @@ import { ButtonLink } from './ButtonLink';
 import type { HeroAction } from '../types/content';
 
 type HeroSectionProps = {
-  logoSrc: string;
   eyebrow: string;
   title: string;
   description: string;
@@ -18,7 +17,6 @@ type HeroSectionProps = {
 };
 
 export function HeroSection({
-  logoSrc,
   eyebrow,
   title,
   description,
@@ -30,7 +28,6 @@ export function HeroSection({
     <section className="hero-section">
       <div className="shell hero-section__grid">
         <div className="hero-copy">
-          <img className="hero-copy__logo" src={logoSrc} alt="The Guild Hall" />
           <p className="section-overline">{eyebrow}</p>
           <h1>{title}</h1>
           <p className="hero-copy__description">{description}</p>
