@@ -11,10 +11,10 @@ export const siteMeta = {
   domain: 'gpk.omg.lol',
   logoSrc: `${import.meta.env.BASE_URL}brand/the-guild-hall-logo.png`,
   emblemSrc: `${import.meta.env.BASE_URL}brand/the-guild-hall-emblem.png`,
-  eyebrow: 'Garbage Pail Kids resource hub',
-  heroTitle: 'Live links for Garbage Pail Kids collectors, sellers, and traders.',
+  eyebrow: 'A cleaner desk for GPK collectors',
+  heroTitle: 'Keep the right tabs open.',
   heroDescription:
-    'The Guild Hall brings together GeePeeKay.com, GPKNews, PriceCharting, 130Point, Whatnot links, and practical shipping tools for Garbage Pail Kids collectors.'
+    'The Guild Hall keeps the useful part of the hobby within reach: GeePeeKay.com for set work, GPKNews for the hobby pulse, PriceCharting and 130Point for comps, plus Whatnot and Pirate Ship when it is time to make the deal move.'
 };
 
 export const navigationLinks: NavigationLink[] = [
@@ -29,11 +29,11 @@ export const featuredResources: ResourceEntry[] = [
     title: 'Request an Item',
     category: 'Collector Requests',
     description:
-      'Use the request form to flag the GPK items, sets, or references you want help tracking down.',
+      'Put the missing card, set, or reference on the radar when the trail goes cold.',
     href: 'https://docs.google.com/forms/d/e/1FAIpQLScVFoit_V1vJvJwFbnbNaSuuChJcNO2ukPNXXIfB-WGyIOS7A/viewform?usp=sharing&ouid=114588655259468960497',
-    status: 'Open form',
+    status: 'Need help?',
     tags: ['Requests', 'Wish list', 'Collector help'],
-    ctaLabel: 'Request an item',
+    ctaLabel: 'Send a request',
     featured: true
   },
   {
@@ -41,9 +41,9 @@ export const featuredResources: ResourceEntry[] = [
     title: 'Sell on Whatnot',
     category: 'Seller Tools',
     description:
-      'Invite other sellers to join through Curators Guild and earn a $150 bonus during their first week on the platform.',
+      'A direct seller invite through Curators Guild for people ready to start listing on Whatnot.',
     href: 'https://whatnot.com/invite/seller/curatorsguild',
-    status: 'Launch link',
+    status: 'Seller ramp',
     tags: ['Seller invite', 'Whatnot', 'Referral'],
     ctaLabel: 'Invite a seller'
   },
@@ -52,9 +52,9 @@ export const featuredResources: ResourceEntry[] = [
     title: 'Shop on Whatnot',
     category: 'Buyer Links',
     description:
-      'Send collectors to the Curators Guild shop and give them a $15 credit on Whatnot to get them through the door.',
+      'A buyer invite that gives new shoppers a credit and an easy first step into the room.',
     href: 'https://whatnot.com/invite/curatorsguild',
-    status: 'Starter perk',
+    status: 'Buyer ramp',
     tags: ['Buyer invite', 'Whatnot', 'Credit'],
     ctaLabel: 'Invite a buyer'
   },
@@ -63,9 +63,9 @@ export const featuredResources: ResourceEntry[] = [
     title: 'GeePeeKay.com',
     category: 'Checklists',
     description:
-      'GeePeeKay.com is a practical reference for Garbage Pail Kids checklists, set tracking, and parallel chasing.',
+      'The checklist desk for set structure, parallels, and naming that actually lines up.',
     href: 'https://geepeekay.com',
-    status: 'Trusted reference',
+    status: 'Set desk',
     tags: ['Checklists', 'Set tracking', 'Reference'],
     ctaLabel: 'Visit GeePeeKay.com'
   },
@@ -74,9 +74,9 @@ export const featuredResources: ResourceEntry[] = [
     title: 'GPKNews',
     category: 'News',
     description:
-      'GPKNews covers Garbage Pail Kids news, product information, hobby updates, and reference posts collectors actually use.',
+      'The hobby wire for product shots, release chatter, and the updates collectors pass around fast.',
     href: 'https://gpknews.com',
-    status: 'Live coverage',
+    status: 'Hobby wire',
     tags: ['News', 'Products', 'Updates'],
     ctaLabel: 'Read GPKNews'
   },
@@ -85,9 +85,9 @@ export const featuredResources: ResourceEntry[] = [
     title: 'PriceCharting',
     category: 'Pricing',
     description:
-      'PriceCharting gives collectors a quick way to check market values, recent price history, and category-wide pricing data.',
+      'A quick temperature check on value before you buy, list, or start arguing with a comp.',
     href: 'https://www.pricecharting.com',
-    status: 'Pricing guide',
+    status: 'Value check',
     tags: ['Pricing', 'Comps', 'Market value'],
     ctaLabel: 'Open PriceCharting'
   },
@@ -96,9 +96,9 @@ export const featuredResources: ResourceEntry[] = [
     title: '130Point',
     category: 'Sales Comps',
     description:
-      '130Point is useful for checking sold listings and comparing actual sales data when you need better comp work.',
+      'The receipts. Sold listings matter more than hopeful asking prices.',
     href: 'https://130point.com',
-    status: 'Sales comps',
+    status: 'Receipt check',
     tags: ['Comps', 'Sold listings', 'Pricing'],
     ctaLabel: 'Open 130Point'
   },
@@ -107,49 +107,47 @@ export const featuredResources: ResourceEntry[] = [
     title: 'Pirate Ship',
     category: 'Shipping Savings',
     description:
-      'Use Pirate Ship to cut label costs, keep shipping lean, and make routine card fulfillment less painful.',
+      'The part after the sale: cheaper labels, cleaner fulfillment, fewer excuses.',
     href: 'https://www.pirateship.com',
-    status: 'Money saver',
+    status: 'Ship it',
     tags: ['Shipping', 'Labels', 'Savings'],
     ctaLabel: 'Open Pirate Ship'
   }
 ];
 
-const liveResourceCount = featuredResources.length;
-
 export const heroHighlights: HeroHighlight[] = [
-  { label: 'Links', value: `${liveResourceCount} resources` },
-  { label: 'Focus', value: 'Checklists, news, comps' },
-  { label: 'Includes', value: 'GeePeeKay.com + GPKNews' }
+  { label: 'Track the set', value: 'GeePeeKay.com + GPKNews' },
+  { label: 'Check the comp', value: 'PriceCharting + 130Point' },
+  { label: 'Move the card', value: 'Whatnot + Pirate Ship' }
 ];
 
 export const resourceCategories: ResourceCategory[] = [
   {
     id: 'market-intel',
-    name: 'Market Links',
+    name: 'Comp Bench',
     description:
-      'Buyer and seller links, pricing references, and sales comp tools for making cleaner buying and selling decisions.',
-    itemCountLabel: '4 resources'
+      'Pricing references, sold comps, and marketplace links for making cleaner buying and selling decisions.',
+    itemCountLabel: '4 tabs'
   },
   {
     id: 'checklists-and-news',
-    name: 'Checklists and News',
+    name: 'Set Desk',
     description:
-      'Current references for checklist research, set tracking, product coverage, and everyday hobby updates.',
-    itemCountLabel: '2 resources'
+      'Checklist work, set tracking, product coverage, and hobby updates without the clutter.',
+    itemCountLabel: '2 tabs'
   },
   {
     id: 'shipping-and-logistics',
-    name: 'Shipping and Logistics',
+    name: 'Shipping Desk',
     description:
-      'A practical lane for saving money on labels and making routine order fulfillment easier.',
-    itemCountLabel: '1 resource'
+      'The practical side of the hobby once the deal is done and the label still needs to get made.',
+    itemCountLabel: '1 tab'
   },
   {
     id: 'collector-help',
-    name: 'Collector Help',
+    name: 'Help Wanted',
     description:
-      'A direct path for collectors who want to request help finding a specific item or resource.',
+      'A direct way to raise your hand when a card, set, or reference is still missing from the stack.',
     itemCountLabel: '1 form'
   }
 ];

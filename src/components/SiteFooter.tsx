@@ -16,11 +16,10 @@ export function SiteFooter({ domain, emblemSrc, links }: SiteFooterProps) {
         <div className="site-footer__summary" id="about">
           <img className="site-footer__emblem" src={emblemSrc} alt="" aria-hidden="true" />
           <p className="section-overline">The Guild Hall</p>
-          <h2>Garbage Pail Kids links that are useful right now.</h2>
+          <h2>Keep the good tabs. Lose the noise.</h2>
           <p>
-            Hosted at <span>{domain}</span>, The Guild Hall brings together GeePeeKay.com,
-            GPKNews, PriceCharting, 130Point, Whatnot links, and shipping help for the GPK
-            community.
+            Hosted at <span>{domain}</span>, The Guild Hall keeps the practical side of the GPK
+            hobby close: set work, hobby coverage, comps, marketplace links, and shipping.
           </p>
         </div>
 
