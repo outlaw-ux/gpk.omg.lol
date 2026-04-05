@@ -5,6 +5,9 @@ import type {
   ResourceEntry
 } from '../types/content';
 
+export const requestFormUrl =
+  'https://docs.google.com/forms/d/e/1FAIpQLScVFoit_V1vJvJwFbnbNaSuuChJcNO2ukPNXXIfB-WGyIOS7A/viewform?usp=sharing&ouid=114588655259468960497';
+
 export const siteMeta = {
   name: 'The Guild Hall',
   domain: 'gpk.omg.lol',
@@ -18,7 +21,7 @@ export const siteMeta = {
 export const navigationLinks: NavigationLink[] = [
   { href: '#resources', label: 'Resources' },
   {
-    href: 'https://docs.google.com/forms/d/e/1FAIpQLScVFoit_V1vJvJwFbnbNaSuuChJcNO2ukPNXXIfB-WGyIOS7A/viewform?usp=sharing&ouid=114588655259468960497',
+    href: requestFormUrl,
     label: 'Contribute'
   }
 ];
@@ -30,7 +33,7 @@ export const featuredResources: ResourceEntry[] = [
     category: 'Collector Requests',
     description:
       'Put the missing card, set, or reference on the radar when the trail goes cold.',
-    href: 'https://docs.google.com/forms/d/e/1FAIpQLScVFoit_V1vJvJwFbnbNaSuuChJcNO2ukPNXXIfB-WGyIOS7A/viewform?usp=sharing&ouid=114588655259468960497',
+    href: requestFormUrl,
     status: 'Need help?',
     tags: ['Requests', 'Wish list', 'Collector help'],
     ctaLabel: 'Send a request',

@@ -8,6 +8,7 @@ import {
   footerLinks,
   heroActions,
   navigationLinks,
+  requestFormUrl,
   siteMeta
 } from './data/siteContent';
 
@@ -27,7 +28,7 @@ function App() {
           description={siteMeta.heroDescription}
           primaryCta={{ href: '#resources', label: 'Browse All Links' }}
           secondaryCta={{
-            href: 'https://docs.google.com/forms/d/e/1FAIpQLScVFoit_V1vJvJwFbnbNaSuuChJcNO2ukPNXXIfB-WGyIOS7A/viewform?usp=sharing&ouid=114588655259468960497',
+            href: requestFormUrl,
             label: 'Send a Want List'
           }}
           actions={heroActions}

@@ -74,12 +74,12 @@ Do not:
 - Radix UI primitives for simple accessible structure
 
 Core files:
-- [`src/App.tsx`](/Users/uxkyle/Code/outlawux/gpk.omg.lol/src/App.tsx)
-- [`src/data/siteContent.ts`](/Users/uxkyle/Code/outlawux/gpk.omg.lol/src/data/siteContent.ts)
-- [`src/components/`](/Users/uxkyle/Code/outlawux/gpk.omg.lol/src/components)
-- [`src/styles/tokens.css`](/Users/uxkyle/Code/outlawux/gpk.omg.lol/src/styles/tokens.css)
-- [`src/styles/global.css`](/Users/uxkyle/Code/outlawux/gpk.omg.lol/src/styles/global.css)
-- [`src/styles/app.css`](/Users/uxkyle/Code/outlawux/gpk.omg.lol/src/styles/app.css)
+- [`src/App.tsx`](src/App.tsx)
+- [`src/data/siteContent.ts`](src/data/siteContent.ts)
+- [`src/components/`](src/components/)
+- [`src/styles/tokens.css`](src/styles/tokens.css)
+- [`src/styles/global.css`](src/styles/global.css)
+- [`src/styles/app.css`](src/styles/app.css)
 
 ## Content Source Of Truth
 
@@ -87,12 +87,14 @@ Homepage content is data-driven.
 
 Do not hard-code resource text into presentation components if it belongs in data.
 
-Use [`src/data/siteContent.ts`](/Users/uxkyle/Code/outlawux/gpk.omg.lol/src/data/siteContent.ts) for:
+Use [`src/data/siteContent.ts`](src/data/siteContent.ts) for:
 - site metadata
 - nav links
 - featured resources
 - hero actions
 - footer links
+
+If the same outbound URL is reused in multiple places, extract it to a shared constant instead of repeating the raw string.
 
 Current key resources include:
 - item request Google Form
@@ -107,8 +109,8 @@ Current key resources include:
 ## Branding Assets
 
 Brand assets live in:
-- [`public/brand/the-guild-hall-emblem.png`](/Users/uxkyle/Code/outlawux/gpk.omg.lol/public/brand/the-guild-hall-emblem.png)
-- [`public/brand/the-guild-hall-logo.png`](/Users/uxkyle/Code/outlawux/gpk.omg.lol/public/brand/the-guild-hall-logo.png)
+- [`public/brand/the-guild-hall-emblem.png`](public/brand/the-guild-hall-emblem.png)
+- [`public/brand/the-guild-hall-logo.png`](public/brand/the-guild-hall-logo.png)
 
 Use the emblem for favicon/browser chrome and compact branding.
 Use the full logo where a larger brand lockup is appropriate.
@@ -125,14 +127,14 @@ Important:
 - Pages must use GitHub Actions, not legacy branch publishing
 
 Workflow:
-- [`.github/workflows/deploy.yml`](/Users/uxkyle/Code/outlawux/gpk.omg.lol/.github/workflows/deploy.yml)
+- [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml)
 
 Pages/domain notes:
-- authoritative CNAME file is [`public/CNAME`](/Users/uxkyle/Code/outlawux/gpk.omg.lol/public/CNAME)
+- authoritative CNAME file is [`public/CNAME`](public/CNAME)
 - domain should be `gpk.omg.lol`
 
 Known failure mode:
-- if Pages is configured as "Deploy from branch" using repo root, GitHub will serve raw [`index.html`](/Users/uxkyle/Code/outlawux/gpk.omg.lol/index.html) with `/src/main.tsx`
+- if Pages is configured as "Deploy from branch" using repo root, GitHub will serve raw [`index.html`](index.html) with `/src/main.tsx`
 - that causes module MIME errors and literal `%BASE_URL%` asset failures
 
 ## Local Development
@@ -157,6 +159,20 @@ npm run build
 
 The build script intentionally type-checks both app code and `vite.config.ts` before building.
 
+## Link Behavior
+
+For links:
+- internal section links such as `#resources` should stay in the same tab
+- external `http` or `https` links should open in a new tab
+- external links should include `rel="noreferrer"` unless there is a specific reason not to
+
+## Submission Flows
+
+For collector submissions and request flows:
+- prefer a Google Form when a hosted form is acceptable
+- if a custom on-site form needs to write into Google Sheets, post to a server-side endpoint or Google Apps Script web app
+- do not call the Google Sheets API directly from browser code with embedded credentials
+
 ## Editing Guidance
 
 When making changes:
@@ -165,6 +181,7 @@ When making changes:
 - prefer updating structured data over duplicating markup
 - keep components reusable and boring in the good way
 - avoid introducing a router or unnecessary app complexity unless the product actually needs it
+- keep repository documentation portable; use repo-relative paths in markdown, not absolute local filesystem paths
 
 When changing copy:
 - do not describe The Guild Hall like a physical clubhouse

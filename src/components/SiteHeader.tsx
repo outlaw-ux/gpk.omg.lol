@@ -7,6 +7,10 @@ type SiteHeaderProps = {
   navigationLinks: NavigationLink[];
 };
 
+function isExternalHref(href: string) {
+  return /^https?:\/\//.test(href);
+}
+
 export function SiteHeader({ brandName, emblemSrc, navigationLinks }: SiteHeaderProps) {
   return (
     <header className="site-header">
@@ -24,7 +28,12 @@ export function SiteHeader({ brandName, emblemSrc, navigationLinks }: SiteHeader
             {navigationLinks.map((link) => (
               <NavigationMenu.Item key={link.href}>
                 <NavigationMenu.Link asChild>
-                  <a className="site-nav__link" href={link.href}>
+                  <a
+                    className="site-nav__link"
+                    href={link.href}
+                    rel={isExternalHref(link.href) ? 'noreferrer' : undefined}
+                    target={isExternalHref(link.href) ? '_blank' : undefined}
+                  >
                     {link.label}
                   </a>
                 </NavigationMenu.Link>
