@@ -59,7 +59,7 @@ export const featuredResources: ResourceEntry[] = [
     ctaLabel: 'Invite a buyer'
   },
   {
-    id: 'geepeekay-checklists',
+    id: 'geepeekay-com',
     title: 'GeePeeKay.com',
     category: 'Checklists',
     description:
