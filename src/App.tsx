@@ -29,10 +29,10 @@ function App() {
           eyebrow={siteMeta.eyebrow}
           title={siteMeta.heroTitle}
           description={siteMeta.heroDescription}
-          primaryCta={{ href: '#resources', label: 'Browse Resources' }}
+          primaryCta={{ href: '#resources', label: 'Open the Stack' }}
           secondaryCta={{
             href: 'https://docs.google.com/forms/d/e/1FAIpQLScVFoit_V1vJvJwFbnbNaSuuChJcNO2ukPNXXIfB-WGyIOS7A/viewform?usp=sharing&ouid=114588655259468960497',
-            label: 'Request an Item'
+            label: 'Send a Want List'
           }}
           highlights={heroHighlights}
         />
@@ -41,9 +41,9 @@ function App() {
           <div className="shell">
             <SectionHeader
               id="featured-heading"
-              overline="Featured Resources"
-              title="Checklists, news, pricing, comps, invites, and shipping."
-              description="Use GeePeeKay.com, GPKNews, PriceCharting, 130Point, Whatnot, and Pirate Ship from one page."
+              overline="The Stack"
+              title="The tabs that earn their spot."
+              description="Reference first, impulse later. These are the stops for set work, hobby coverage, comp checks, seller traffic, and shipping."
             />
 
             <div className="resource-grid" role="list">
@@ -60,9 +60,9 @@ function App() {
           <div className="shell">
             <SectionHeader
               id="categories-heading"
-              overline="Current Categories"
-              title="Resources organized by what you need."
-              description="Browse pricing and sales comps, checklist and news references, shipping tools, and collector help."
+              overline="Workbenches"
+              title="Every link here has a job."
+              description="Track the set. Check the market. Move the deal. Ask for help when the trail goes cold."
             />
 
             <div className="category-grid" role="list">

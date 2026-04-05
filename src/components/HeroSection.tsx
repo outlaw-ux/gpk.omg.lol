@@ -44,9 +44,9 @@ export function HeroSection({
         </div>
 
         <aside className="hero-panel" aria-label="Guild Hall highlights">
-          <div className="hero-panel__cap">Start here</div>
+          <div className="hero-panel__cap">Collector Bench</div>
           <p className="hero-panel__lead">
-            Checklists, news, pricing, sold comps, buying, selling, and shipping in one place.
+            The fast path from checklist to comp to shipped package.
           </p>
 
           <dl className="hero-panel__stats">
@@ -59,7 +59,7 @@ export function HeroSection({
           </dl>
 
           <div className="hero-panel__note">
-            Use GeePeeKay.com for checklists, GPKNews for updates, and PriceCharting or 130Point for comps.
+            Built for the collector who would rather verify the card than listen to the pitch.
           </div>
         </aside>
       </div>
