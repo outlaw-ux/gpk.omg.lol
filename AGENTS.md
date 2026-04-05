@@ -189,6 +189,7 @@ When changing copy:
 - do not make the site sound like a sales funnel
 - do not narrate the site's purpose when the UI itself can show it
 - do not repeat the same resource list in both prose and cards
+- do not stuff page titles, meta descriptions, or intro copy with a roll call of linked sites
 - prefer direct task language over abstract concepts
 
 ## Pull Requests
