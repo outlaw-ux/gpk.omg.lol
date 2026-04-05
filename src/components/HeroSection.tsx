@@ -43,7 +43,7 @@ export function HeroSection({
           </div>
         </div>
 
-        <aside className="hero-panel" aria-label="Guild Hall highlights">
+        <aside className="hero-panel" aria-label="Guild Hall quick links">
           <div className="hero-panel__cap">Quick Links</div>
           <p className="hero-panel__lead">
             Open the task you came for.
