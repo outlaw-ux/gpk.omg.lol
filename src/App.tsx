@@ -8,7 +8,7 @@ import { SiteHeader } from './components/SiteHeader';
 import {
   featuredResources,
   footerLinks,
-  heroHighlights,
+  heroActions,
   navigationLinks,
   resourceCategories,
   siteMeta
@@ -29,12 +29,12 @@ function App() {
           eyebrow={siteMeta.eyebrow}
           title={siteMeta.heroTitle}
           description={siteMeta.heroDescription}
-          primaryCta={{ href: '#resources', label: 'Open the Stack' }}
+          primaryCta={{ href: '#resources', label: 'Browse All Links' }}
           secondaryCta={{
             href: 'https://docs.google.com/forms/d/e/1FAIpQLScVFoit_V1vJvJwFbnbNaSuuChJcNO2ukPNXXIfB-WGyIOS7A/viewform?usp=sharing&ouid=114588655259468960497',
             label: 'Send a Want List'
           }}
-          highlights={heroHighlights}
+          actions={heroActions}
         />
 
         <section className="content-section" id="resources" aria-labelledby="featured-heading">

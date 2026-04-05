@@ -1,6 +1,6 @@
 import type {
   FooterLink,
-  HeroHighlight,
+  HeroAction,
   NavigationLink,
   ResourceCategory,
   ResourceEntry
@@ -11,10 +11,10 @@ export const siteMeta = {
   domain: 'gpk.omg.lol',
   logoSrc: `${import.meta.env.BASE_URL}brand/the-guild-hall-logo.png`,
   emblemSrc: `${import.meta.env.BASE_URL}brand/the-guild-hall-emblem.png`,
-  eyebrow: 'A cleaner desk for GPK collectors',
-  heroTitle: 'Keep the right tabs open.',
+  eyebrow: 'Useful GPK links, not filler',
+  heroTitle: 'Skip the tab hunt.',
   heroDescription:
-    'The Guild Hall keeps the useful part of the hobby within reach: GeePeeKay.com for set work, GPKNews for the hobby pulse, PriceCharting and 130Point for comps, plus Whatnot and Pirate Ship when it is time to make the deal move.'
+    'Use this page the way you already use the hobby: check the set, verify the comp, jump into a show, and print the label without digging through bookmarks.'
 };
 
 export const navigationLinks: NavigationLink[] = [
@@ -115,10 +115,35 @@ export const featuredResources: ResourceEntry[] = [
   }
 ];
 
-export const heroHighlights: HeroHighlight[] = [
-  { label: 'Track the set', value: 'GeePeeKay.com + GPKNews' },
-  { label: 'Check the comp', value: 'PriceCharting + 130Point' },
-  { label: 'Move the card', value: 'Whatnot + Pirate Ship' }
+export const heroActions: HeroAction[] = [
+  {
+    label: 'Set Work',
+    title: 'GeePeeKay.com',
+    description: 'Checklists, naming, and parallel structure when you need to verify the card.',
+    href: 'https://geepeekay.com',
+    ctaLabel: 'Open checklists'
+  },
+  {
+    label: 'Sold Comps',
+    title: '130Point',
+    description: 'Check what actually sold before you buy into somebody else’s number.',
+    href: 'https://130point.com',
+    ctaLabel: 'Open sold listings'
+  },
+  {
+    label: 'Price Check',
+    title: 'PriceCharting',
+    description: 'Get a fast pricing read when you need a market baseline.',
+    href: 'https://www.pricecharting.com',
+    ctaLabel: 'Open prices'
+  },
+  {
+    label: 'Ship It',
+    title: 'Pirate Ship',
+    description: 'Print the label and move on once the deal is done.',
+    href: 'https://www.pirateship.com',
+    ctaLabel: 'Open shipping'
+  }
 ];
 
 export const resourceCategories: ResourceCategory[] = [

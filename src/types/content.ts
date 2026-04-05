@@ -27,7 +27,10 @@ export type FooterLink = {
   href: string;
 };
 
-export type HeroHighlight = {
+export type HeroAction = {
   label: string;
-  value: string;
+  title: string;
+  description: string;
+  href: string;
+  ctaLabel: string;
 };

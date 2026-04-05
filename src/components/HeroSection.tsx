@@ -1,5 +1,5 @@
 import { ButtonLink } from './ButtonLink';
-import type { HeroHighlight } from '../types/content';
+import type { HeroAction } from '../types/content';
 
 type HeroSectionProps = {
   logoSrc: string;
@@ -14,7 +14,7 @@ type HeroSectionProps = {
     href: string;
     label: string;
   };
-  highlights: HeroHighlight[];
+  actions: HeroAction[];
 };
 
 export function HeroSection({
@@ -24,7 +24,7 @@ export function HeroSection({
   description,
   primaryCta,
   secondaryCta,
-  highlights
+  actions
 }: HeroSectionProps) {
   return (
     <section className="hero-section">
@@ -43,23 +43,28 @@ export function HeroSection({
           </div>
         </div>
 
-        <aside className="hero-panel" aria-label="Guild Hall highlights">
-          <div className="hero-panel__cap">Collector Bench</div>
+        <aside className="hero-panel" aria-label="Guild Hall quick links">
+          <div className="hero-panel__cap">Quick Links</div>
           <p className="hero-panel__lead">
-            The fast path from checklist to comp to shipped package.
+            Open the task you came for.
           </p>
 
-          <dl className="hero-panel__stats">
-            {highlights.map((highlight) => (
-              <div key={highlight.label} className="hero-panel__stat">
-                <dt>{highlight.label}</dt>
-                <dd>{highlight.value}</dd>
-              </div>
+          <div className="hero-panel__actions" role="list">
+            {actions.map((action) => (
+              <a
+                key={action.title}
+                className="hero-action-card"
+                href={action.href}
+                target="_blank"
+                rel="noreferrer"
+                role="listitem"
+              >
+                <p className="hero-action-card__label">{action.label}</p>
+                <h2 className="hero-action-card__title">{action.title}</h2>
+                <p className="hero-action-card__description">{action.description}</p>
+                <span className="hero-action-card__cta">{action.ctaLabel}</span>
+              </a>
             ))}
-          </dl>
-
-          <div className="hero-panel__note">
-            Built for the collector who would rather verify the card than listen to the pitch.
           </div>
         </aside>
       </div>
