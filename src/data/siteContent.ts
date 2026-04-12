@@ -1,160 +1,142 @@
-import type {
-  FooterLink,
-  HeroAction,
-  NavigationLink,
-  ResourceEntry
-} from '../types/content';
+const guildLogoSrc = `${import.meta.env.BASE_URL}brand/curators-guild-logo.png`;
+const gpkLogoSrc = `${import.meta.env.BASE_URL}brand/garbage-pail-kids-logo.png`;
+const explosionSrc = `${import.meta.env.BASE_URL}art/gpk-explosion.png`;
+const collageSrc = `${import.meta.env.BASE_URL}art/gpk-collage.jpg`;
 
-export const requestFormUrl =
-  'https://docs.google.com/forms/d/e/1FAIpQLScVFoit_V1vJvJwFbnbNaSuuChJcNO2ukPNXXIfB-WGyIOS7A/viewform?usp=sharing&ouid=114588655259468960497';
-
-export const siteMeta = {
-  name: 'The Guild Hall',
-  domain: 'gpk.omg.lol',
-  emblemSrc: `${import.meta.env.BASE_URL}brand/the-guild-hall-emblem.png`,
-  eyebrow: 'Useful GPK links, not filler',
-  heroTitle: 'Skip the tab hunt.',
-  heroDescription:
-    'Use this page the way you already use the hobby: check the set, verify the comp, jump into a show, and print the label without digging through bookmarks.'
+export const pageContent = {
+  brand: {
+    name: 'The Guild Hall',
+    subhead: 'GPK Bounty Board',
+    guildLogoSrc,
+    gpkLogoSrc
+  },
+  art: {
+    explosionSrc,
+    collageSrc,
+    noteEyebrow: 'Bounties live here',
+    noteBody:
+      'Use the form to post the missing piece and let the hunt start. Coming soon: a live bounty board with active collection hunts.'
+  },
+  hero: {
+    eyebrow: 'Curate the collection. Post the bounty.',
+    title: 'Request GPK cards, sketches, and weird collectibles.',
+    description:
+      'The Guild Hall is where you post the missing pieces: singles, sketch cards, wrappers, promos, sealed oddities, and other gross grails.',
+    tags: ['Singles', 'Sketches', 'Promos', 'Oddball pieces'],
+    quickCallouts: [
+      {
+        title: 'Curate the pile',
+        body: 'Track what the collection still needs.'
+      },
+      {
+        title: 'Guild Hall',
+        body: 'A central board for active GPK hunts.'
+      },
+      {
+        title: 'Bounties',
+        body: 'Post the weird one and let people chase it.'
+      }
+    ]
+  },
+  form: {
+    eyebrow: 'Post a request',
+    title: 'Start the hunt',
+    description: 'Keep it short, specific, and collectible-focused.',
+    callouts: [
+      {
+        title: 'Cards',
+        body: 'Singles, parallels, autos, and set gaps.'
+      },
+      {
+        title: 'Sketches',
+        body: 'Artist pieces, themes, and one-off weirdness.'
+      },
+      {
+        title: 'Collectibles',
+        body: 'Wrappers, promos, sealed packs, and oddball extras.'
+      }
+    ]
+  },
+  sidebar: {
+    eyebrow: 'Callouts',
+    title: 'What belongs on the board',
+    description: 'If it helps finish or upgrade the collection, it belongs here.',
+    targets: [
+      {
+        icon: '1',
+        title: 'Exact singles',
+        body: 'Card numbers, names, parallels, or one stubborn gap.'
+      },
+      {
+        icon: '2',
+        title: 'Sketch and artist hunts',
+        body: 'Themes, characters, artists, and gross custom asks.'
+      },
+      {
+        icon: '3',
+        title: 'Oddball extras',
+        body: 'Promos, wrappers, proofs, sealed material, and weird stuff.'
+      }
+    ],
+    notes: [
+      {
+        eyebrow: 'Curating',
+        title: 'Build the collection with intent.',
+        body: 'Use the request board to focus on the pieces that actually matter instead of chasing random filler.'
+      },
+      {
+        eyebrow: 'Guild Hall',
+        title: 'One place for the active hunts.',
+        body: 'The Guild Hall is the shared board for what is missing, what is wanted, and what is worth tracking down.'
+      },
+      {
+        eyebrow: 'Bounties',
+        title: 'Post the gross grail.',
+        body: 'If the piece is hard to find, strange to describe, or just plain disgusting in the best way, put a bounty on it.'
+      }
+    ]
+  },
+  footer: {
+    copyright: '© Riverbend Vintage Trading Company LLC',
+    websiteLabel: 'www.curatorsguild.com',
+    websiteUrl: 'https://www.curatorsguild.com'
+  }
 };
 
-export const navigationLinks: NavigationLink[] = [
-  { href: '#resources', label: 'Resources' },
-  {
-    href: requestFormUrl,
-    label: 'Contribute'
-  }
-];
-
-export const featuredResources: ResourceEntry[] = [
-  {
-    id: 'request-an-item',
-    title: 'Request an Item',
-    category: 'Collector Requests',
-    description:
-      'Put the missing card, set, or reference on the radar when the trail goes cold.',
-    href: requestFormUrl,
-    status: 'Need help?',
-    tags: ['Requests', 'Wish list', 'Collector help'],
-    ctaLabel: 'Send a request',
-    featured: true
+export const requestFormContent = {
+  configMessage:
+    'Add VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY to enable live submissions from this form.',
+  submittingMessage: 'Dropping your request into the slime pile...',
+  successMessage: 'Request received. The gross hunt is live.',
+  errorMessage: 'The request did not stick. Check the Supabase keys and table policy, then try again.',
+  submitLabels: {
+    idle: 'Launch Request',
+    submitting: 'Launching...'
   },
-  {
-    id: 'seller-invite',
-    title: 'Sell on Whatnot',
-    category: 'Seller Tools',
-    description:
-      'A direct seller invite through Curators Guild for people ready to start listing on Whatnot.',
-    href: 'https://whatnot.com/invite/seller/curatorsguild',
-    status: 'Seller ramp',
-    tags: ['Seller invite', 'Whatnot', 'Referral'],
-    ctaLabel: 'Invite a seller'
+  labels: {
+    collectorName: 'Collector name',
+    email: 'Email',
+    whatnotHandle: 'Whatnot handle',
+    requestType: 'What are you hunting?',
+    setName: 'Series / set / release',
+    cardNumber: 'Card number',
+    cardName: 'Card or collectible name',
+    variation: 'Parallel / sketch / collectible details',
+    conditionPreference: 'Condition target',
+    budgetNotes: 'Budget / trade notes',
+    requestDetails: 'What exactly are you after?'
   },
-  {
-    id: 'buyer-invite',
-    title: 'Shop on Whatnot',
-    category: 'Buyer Links',
-    description:
-      'A buyer invite that gives new shoppers a credit and an easy first step into the room.',
-    href: 'https://whatnot.com/invite/curatorsguild',
-    status: 'Buyer ramp',
-    tags: ['Buyer invite', 'Whatnot', 'Credit'],
-    ctaLabel: 'Invite a buyer'
-  },
-  {
-    id: 'geepeekay-com',
-    title: 'GeePeeKay.com',
-    category: 'Checklists',
-    description:
-      'The checklist desk for set structure, parallels, and naming that actually lines up.',
-    href: 'https://geepeekay.com',
-    status: 'Set desk',
-    tags: ['Checklists', 'Set tracking', 'Reference'],
-    ctaLabel: 'Visit GeePeeKay.com'
-  },
-  {
-    id: 'gpknews',
-    title: 'GPKNews',
-    category: 'News',
-    description:
-      'The hobby wire for product shots, release chatter, and the updates collectors pass around fast.',
-    href: 'https://gpknews.com',
-    status: 'Hobby wire',
-    tags: ['News', 'Products', 'Updates'],
-    ctaLabel: 'Read GPKNews'
-  },
-  {
-    id: 'pricecharting',
-    title: 'PriceCharting',
-    category: 'Pricing',
-    description:
-      'A quick temperature check on value before you buy, list, or start arguing with a comp.',
-    href: 'https://www.pricecharting.com',
-    status: 'Value check',
-    tags: ['Pricing', 'Comps', 'Market value'],
-    ctaLabel: 'Open PriceCharting'
-  },
-  {
-    id: '130point',
-    title: '130Point',
-    category: 'Sales Comps',
-    description:
-      'The receipts. Sold listings matter more than hopeful asking prices.',
-    href: 'https://130point.com',
-    status: 'Receipt check',
-    tags: ['Comps', 'Sold listings', 'Pricing'],
-    ctaLabel: 'Open 130Point'
-  },
-  {
-    id: 'pirate-ship',
-    title: 'Pirate Ship',
-    category: 'Shipping Savings',
-    description:
-      'The part after the sale: cheaper labels, cleaner fulfillment, fewer excuses.',
-    href: 'https://www.pirateship.com',
-    status: 'Ship it',
-    tags: ['Shipping', 'Labels', 'Savings'],
-    ctaLabel: 'Open Pirate Ship'
-  }
-];
-
-export const heroActions: HeroAction[] = [
-  {
-    label: 'Set Work',
-    title: 'GeePeeKay.com',
-    description: 'Checklists, naming, and parallel structure when you need to verify the card.',
-    href: 'https://geepeekay.com',
-    ctaLabel: 'Open checklists'
-  },
-  {
-    label: 'Sold Comps',
-    title: '130Point',
-    description: 'Check what actually sold before you buy into somebody else’s number.',
-    href: 'https://130point.com',
-    ctaLabel: 'Open sold listings'
-  },
-  {
-    label: 'Price Check',
-    title: 'PriceCharting',
-    description: 'Get a fast pricing read when you need a market baseline.',
-    href: 'https://www.pricecharting.com',
-    ctaLabel: 'Open prices'
-  },
-  {
-    label: 'Ship It',
-    title: 'Pirate Ship',
-    description: 'Print the label and move on once the deal is done.',
-    href: 'https://www.pirateship.com',
-    ctaLabel: 'Open shipping'
-  }
-];
-
-export const footerLinks: FooterLink[] = [
-  { label: 'Facebook', href: 'https://www.facebook.com/curatorgpk/' },
-  { label: 'Instagram', href: 'https://www.instagram.com/thecuratorsguild/' },
-  { label: 'Whatnot Shop', href: 'https://whatnot.com/invite/curatorsguild' },
-  { label: 'GeePeeKay.com', href: 'https://geepeekay.com' },
-  { label: 'GPKNews', href: 'https://gpknews.com' },
-  { label: 'PriceCharting', href: 'https://www.pricecharting.com' },
-  { label: '130Point', href: 'https://130point.com' }
-];
+  requestTypeOptions: [
+    { value: 'single-card', label: 'Single card' },
+    { value: 'sketch-card', label: 'Sketch or artist piece' },
+    { value: 'oddball-collectible', label: 'Oddball collectible' },
+    { value: 'want-list', label: 'Short want list' },
+    { value: 'set-help', label: 'Need help identifying it' }
+  ],
+  conditionOptions: [
+    { value: 'any-displayable', label: 'Any displayable copy' },
+    { value: 'clean-raw', label: 'Clean raw copy' },
+    { value: 'high-end', label: 'High-end / premium example' },
+    { value: 'sealed-preferred', label: 'Sealed if that applies' }
+  ]
+};

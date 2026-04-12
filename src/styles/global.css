@@ -15,38 +15,24 @@ body {
   font-family: var(--font-body);
   color: var(--color-text);
   background:
-    radial-gradient(circle at top left, rgba(95, 121, 255, 0.18), transparent 28%),
-    radial-gradient(circle at top right, rgba(143, 109, 255, 0.18), transparent 24%),
-    linear-gradient(180deg, #0a1020 0%, #090c17 48%, #070911 100%);
+    radial-gradient(circle at top left, rgba(255, 221, 82, 0.18), transparent 20%),
+    radial-gradient(circle at top right, rgba(255, 71, 87, 0.18), transparent 20%),
+    linear-gradient(180deg, #7a001f 0%, #22000b 46%, #0d0906 100%);
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
 }
 
-body::before,
-body::after {
+body::before {
   content: '';
   position: fixed;
-  inset: auto;
-  pointer-events: none;
+  inset: 0;
   z-index: -1;
-  border-radius: 999px;
-  filter: blur(60px);
-}
-
-body::before {
-  top: 9rem;
-  left: -5rem;
-  width: 18rem;
-  height: 18rem;
-  background: rgba(143, 109, 255, 0.1);
-}
-
-body::after {
-  right: -3rem;
-  bottom: 12rem;
-  width: 16rem;
-  height: 16rem;
-  background: rgba(77, 184, 255, 0.08);
+  background:
+    linear-gradient(rgba(255, 255, 255, 0.03) 2px, transparent 2px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 2px, transparent 2px);
+  background-size: 34px 34px;
+  opacity: 0.16;
+  pointer-events: none;
 }
 
 a {
@@ -71,44 +57,24 @@ h2,
 h3,
 p,
 ul,
+ol,
 dl,
 dd {
   margin: 0;
 }
 
-ul {
+ul,
+ol {
   padding: 0;
   list-style: none;
 }
 
+#root {
+  isolation: isolate;
+}
+
 .shell {
-  width: min(var(--max-width), calc(100% - 2rem));
-  margin: 0 auto;
-}
-
-.section-overline {
-  margin-bottom: 0.9rem;
-  color: var(--color-electric);
-  font-size: 0.78rem;
-  font-weight: 800;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-}
-
-.section-divider {
-  height: 1px;
-  background: linear-gradient(
-    90deg,
-    transparent 0%,
-    rgba(95, 121, 255, 0.38) 15%,
-    rgba(143, 109, 255, 0.65) 50%,
-    rgba(77, 184, 255, 0.38) 85%,
-    transparent 100%
-  );
-}
-
-.shell-divider {
-  width: min(calc(var(--max-width) - 2.5rem), calc(100% - 2rem));
+  width: min(var(--max-width), calc(100% - 1.2rem));
   margin: 0 auto;
 }
 
