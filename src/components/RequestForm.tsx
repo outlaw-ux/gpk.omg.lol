@@ -115,6 +115,9 @@ export function RequestForm() {
             autoComplete="name"
             placeholder="Your collector name"
             required
+            minLength={2}
+            maxLength={120}
+            title="Collector name must be between 2 and 120 characters."
             value={values.collectorName}
             onChange={handleChange}
           />
@@ -240,6 +243,7 @@ export function RequestForm() {
             placeholder="Tell us what you want, how exact the match has to be, whether this is for display / grading / trade, and any gross little details that matter."
             required
             minLength={12}
+            maxLength={3000}
             value={values.requestDetails}
             onChange={handleChange}
           />

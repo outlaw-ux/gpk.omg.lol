@@ -9,7 +9,7 @@ create table if not exists public.card_requests (
   email text not null check (position('@' in email) > 1),
   whatnot_handle text,
   request_type text not null check (
-    request_type in ('single-card', 'want-list', 'parallel-hunt', 'set-help')
+    request_type in ('single-card', 'sketch-card', 'oddball-collectible', 'want-list', 'set-help')
   ),
   set_name text,
   card_number text,

@@ -2,13 +2,13 @@
 from __future__ import annotations
 
 import csv
+import os
 from pathlib import Path
 
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
-SOURCE_CSV = Path(
-    "/Users/uxkyle/Downloads/Garbage Pail Kids Master Collection v2.1 250301 - Cards DB.csv"
-)
+DEFAULT_SOURCE_CSV = REPO_ROOT / "Garbage Pail Kids Master Collection v2.1 250301 - Cards DB.csv"
+SOURCE_CSV = Path(os.environ.get("GPK_SOURCE_CSV", str(DEFAULT_SOURCE_CSV)))
 OUTPUT_SQL = REPO_ROOT / "supabase" / "gpk_cards_import.sql"
 IMPORT_BATCH = "gpk_master_collection_v2_1_250301"
 TABLE_NAME = "public.gpk_cards"
