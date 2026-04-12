@@ -98,17 +98,16 @@ export const pageContent = {
   },
   footer: {
     copyright: '© Riverbend Vintage Trading Company LLC',
-    websiteLabel: 'www.curatorsguild.com',
-    websiteUrl: 'https://www.curatorsguild.com'
+    websiteLabel: 'curatorsguild.com',
+    websiteUrl: 'https://curatorsguild.com'
   }
 };
 
 export const requestFormContent = {
-  configMessage:
-    'Add VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY to enable live submissions from this form.',
   submittingMessage: 'Dropping your request into the slime pile...',
   successMessage: 'Request received. The gross hunt is live.',
-  errorMessage: 'The request did not stick. Check the Supabase keys and table policy, then try again.',
+  errorMessage: 'The request did not stick. Please try again.',
+  verificationMessage: 'Please complete the verification check before sending the request.',
   submitLabels: {
     idle: 'Launch Request',
     submitting: 'Launching...'
