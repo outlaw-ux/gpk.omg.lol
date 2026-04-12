@@ -7,14 +7,7 @@ function App() {
     <div className="app-shell">
       <main className="request-canvas">
         <div className="shell">
-          <header
-            className="blast-banner"
-            style={
-              {
-                '--blast-logo': `url(${pageContent.brand.gpkLogoSrc})`
-              } as CSSProperties
-            }
-          >
+          <header className="blast-banner">
             <div className="blast-banner__guild">
               <img
                 className="blast-banner__guild-logo"
@@ -23,8 +16,8 @@ function App() {
               />
 
               <div>
-                <p className="blast-banner__eyebrow">{pageContent.brand.eyebrow}</p>
                 <p className="blast-banner__title">{pageContent.brand.name}</p>
+                <p className="blast-banner__subhead">{pageContent.brand.subhead}</p>
               </div>
             </div>
           </header>

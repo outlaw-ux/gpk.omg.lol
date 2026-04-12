@@ -5,8 +5,8 @@ const collageSrc = `${import.meta.env.BASE_URL}art/gpk-collage.jpg`;
 
 export const pageContent = {
   brand: {
-    name: "Guild Hall",
-    eyebrow: 'GPK hunt desk',
+    name: 'The Guild Hall',
+    subhead: 'GPK Bounty Board',
     guildLogoSrc,
     gpkLogoSrc
   },
