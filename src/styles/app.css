@@ -465,6 +465,28 @@
   margin-top: 1rem;
 }
 
+.site-footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.8rem;
+  margin-top: 1rem;
+  padding: 1rem 0 0.2rem;
+  color: rgba(255, 247, 231, 0.82);
+  font-weight: 800;
+}
+
+.site-footer a {
+  color: #ffef65;
+}
+
+.site-footer a:hover,
+.site-footer a:focus-visible {
+  color: #8fff4b;
+  outline: none;
+}
+
 .junk-drawer {
   padding: 1rem 1.05rem;
   border-radius: 1.8rem;
@@ -596,5 +618,10 @@
 
   .hero-art__burst {
     min-height: 320px;
+  }
+
+  .site-footer {
+    flex-direction: column;
+    align-items: flex-start;
   }
 }

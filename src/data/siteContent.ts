@@ -95,6 +95,11 @@ export const pageContent = {
         body: 'If the piece is hard to find, strange to describe, or just plain disgusting in the best way, put a bounty on it.'
       }
     ]
+  },
+  footer: {
+    copyright: '© Riverbend Vintage Trading Company LLC',
+    websiteLabel: 'www.curatorsguild.com',
+    websiteUrl: 'https://www.curatorsguild.com'
   }
 };
 

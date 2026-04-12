@@ -138,6 +138,17 @@ function App() {
               ))}
             </div>
           </section>
+
+          <footer className="site-footer">
+            <p>{pageContent.footer.copyright}</p>
+            <a
+              href={pageContent.footer.websiteUrl}
+              target="_blank"
+              rel="noreferrer"
+            >
+              {pageContent.footer.websiteLabel}
+            </a>
+          </footer>
         </div>
       </main>
     </div>
