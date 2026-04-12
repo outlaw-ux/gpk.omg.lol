@@ -1,15 +1,8 @@
 :root {
-  --font-body: 'Manrope', sans-serif;
-  --font-display: 'Space Grotesk', sans-serif;
+  --font-body: 'Nunito Sans', sans-serif;
+  --font-display: 'Bangers', cursive;
 
-  --color-text: #f3f5ff;
-  --color-text-soft: #b3bddf;
-  --color-border: rgba(126, 145, 255, 0.18);
-  --color-electric: #68c6ff;
-  --color-lime: #c5ff59;
-  --color-amber: #ffbf47;
-  --color-shadow: rgba(0, 0, 0, 0.38);
-
-  --shadow-soft: 0 24px 70px var(--color-shadow);
-  --max-width: 1180px;
+  --color-text: #fff7e7;
+  --color-border: rgba(17, 17, 17, 0.6);
+  --max-width: 1240px;
 }

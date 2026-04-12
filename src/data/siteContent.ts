@@ -1,65 +1,97 @@
-const logoSrc = `${import.meta.env.BASE_URL}brand/curators-guild-logo.png`;
+const guildLogoSrc = `${import.meta.env.BASE_URL}brand/curators-guild-logo.png`;
+const gpkLogoSrc = `${import.meta.env.BASE_URL}brand/garbage-pail-kids-logo.png`;
+const explosionSrc = `${import.meta.env.BASE_URL}art/gpk-explosion.png`;
+const collageSrc = `${import.meta.env.BASE_URL}art/gpk-collage.jpg`;
 
 export const pageContent = {
   brand: {
     name: "Curator's Guild",
-    eyebrow: 'GPK Request Desk',
-    note: 'A local request form for collectors chasing missing cards, variations, and want-list gaps.',
-    logoSrc
+    eyebrow: 'GPK hunt desk',
+    guildLogoSrc,
+    gpkLogoSrc
+  },
+  art: {
+    explosionSrc,
+    collageSrc,
+    noteEyebrow: 'Bounties live here',
+    noteBody: 'Use the form to post the missing piece and let the hunt start.'
   },
   hero: {
-    eyebrow: 'Fresh build, no off-site form',
-    title: 'Put the missing card on the board.',
+    eyebrow: 'Curate the collection. Post the bounty.',
+    title: 'Request GPK cards, sketches, and weird collectibles.',
     description:
-      "This request desk now lives inside the app. Send the card details here and the submission stores directly in Supabase so follow-up stays local to gpk.omg.lol.",
-    tags: ['Single cards', 'Want lists', 'Parallels', 'Oddball variations'],
-    stats: [
-      { value: 'Local', label: 'Form lives in-app' },
-      { value: 'Direct', label: 'Stored in Supabase' },
-      { value: 'Collector-first', label: 'Built for GPK specifics' }
+      'This Guild Hall is where you post the missing pieces: singles, sketch cards, wrappers, promos, sealed oddities, and other gross grails.',
+    tags: ['Singles', 'Sketches', 'Promos', 'Oddball pieces'],
+    quickCallouts: [
+      {
+        title: 'Curate the pile',
+        body: 'Track what the collection still needs.'
+      },
+      {
+        title: 'Guild Hall',
+        body: 'A central board for active GPK hunts.'
+      },
+      {
+        title: 'Bounties',
+        body: 'Post the weird one and let people chase it.'
+      }
     ]
   },
-  process: [
-    {
-      step: '01',
-      title: 'Describe the exact card',
-      description:
-        'Set, number, name, parallel, or whatever piece of the trail you already have.'
-    },
-    {
-      step: '02',
-      title: 'Add your constraints',
-      description: 'Condition targets, budget ceilings, trade notes, or how close is close enough.'
-    },
-    {
-      step: '03',
-      title: 'Leave a clean contact path',
-      description: 'Email is required. Add your Whatnot handle too if that is where the hobby conversation already lives.'
-    }
-  ],
   form: {
-    eyebrow: 'Request Intake',
-    title: 'Submit a card request',
-    description:
-      'The more specific the details, the easier it is to separate a real lead from a bad match.'
+    eyebrow: 'Post a request',
+    title: 'Send the hunt',
+    description: 'Keep it short, specific, and collectible-focused.',
+    callouts: [
+      {
+        title: 'Cards',
+        body: 'Singles, parallels, autos, and set gaps.'
+      },
+      {
+        title: 'Sketches',
+        body: 'Artist pieces, themes, and one-off weirdness.'
+      },
+      {
+        title: 'Collectibles',
+        body: 'Wrappers, promos, sealed packs, and oddball extras.'
+      }
+    ]
   },
-  briefing: {
-    eyebrow: 'What this form is for',
-    title: 'Keep the ask tight.',
-    description:
-      'This page is built for card hunts, not a general contact inbox. A sharp request saves time on both sides.',
-    items: [
+  sidebar: {
+    eyebrow: 'Callouts',
+    title: 'What belongs on the board',
+    description: 'If it helps finish or upgrade the collection, it belongs here.',
+    targets: [
       {
-        title: 'Single cards work best',
-        body: 'One card is ideal, but short want lists and focused parallels are still fair game.'
+        icon: '1',
+        title: 'Exact singles',
+        body: 'Card numbers, names, parallels, or one stubborn gap.'
       },
       {
-        title: 'Unknowns are fine',
-        body: 'If you only know the set or part of the name, put that in the details and call out the gap.'
+        icon: '2',
+        title: 'Sketch and artist hunts',
+        body: 'Themes, characters, artists, and gross custom asks.'
       },
       {
-        title: 'Budget notes help',
-        body: 'A rough ceiling or trade range keeps expensive surprises from wasting the follow-up.'
+        icon: '3',
+        title: 'Oddball extras',
+        body: 'Promos, wrappers, proofs, sealed material, and weird stuff.'
+      }
+    ],
+    notes: [
+      {
+        eyebrow: 'Curating',
+        title: 'Build the collection with intent.',
+        body: 'Use the request board to focus on the pieces that actually matter instead of chasing random filler.'
+      },
+      {
+        eyebrow: 'Guild Hall',
+        title: 'One place for the active hunts.',
+        body: 'The Guild Hall is the shared board for what is missing, what is wanted, and what is worth tracking down.'
+      },
+      {
+        eyebrow: 'Bounties',
+        title: 'Post the gross grail.',
+        body: 'If the piece is hard to find, strange to describe, or just plain disgusting in the best way, put a bounty on it.'
       }
     ]
   }
@@ -68,36 +100,37 @@ export const pageContent = {
 export const requestFormContent = {
   configMessage:
     'Add VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY to enable live submissions from this form.',
-  submittingMessage: 'Sending your request now...',
-  successMessage: 'Request received. The card hunt is on the board.',
-  errorMessage: 'The request did not save. Check the Supabase keys and table policy, then try again.',
+  submittingMessage: 'Dropping your request into the slime pile...',
+  successMessage: 'Request received. The gross hunt is live.',
+  errorMessage: 'The request did not stick. Check the Supabase keys and table policy, then try again.',
   submitLabels: {
-    idle: 'Send Request',
-    submitting: 'Sending...'
+    idle: 'Launch Request',
+    submitting: 'Launching...'
   },
   labels: {
-    collectorName: 'Name',
+    collectorName: 'Collector name',
     email: 'Email',
     whatnotHandle: 'Whatnot handle',
-    requestType: 'Request type',
-    setName: 'Set or release',
+    requestType: 'What are you hunting?',
+    setName: 'Series / set / release',
     cardNumber: 'Card number',
-    cardName: 'Card name',
-    variation: 'Variation or parallel',
+    cardName: 'Card or collectible name',
+    variation: 'Parallel / sketch / collectible details',
     conditionPreference: 'Condition target',
-    budgetNotes: 'Budget or trade notes',
-    requestDetails: 'Request details'
+    budgetNotes: 'Budget / trade notes',
+    requestDetails: 'What exactly are you after?'
   },
   requestTypeOptions: [
     { value: 'single-card', label: 'Single card' },
+    { value: 'sketch-card', label: 'Sketch or artist piece' },
+    { value: 'oddball-collectible', label: 'Oddball collectible' },
     { value: 'want-list', label: 'Short want list' },
-    { value: 'parallel-hunt', label: 'Parallel or variation hunt' },
-    { value: 'set-help', label: 'Need help identifying the card' }
+    { value: 'set-help', label: 'Need help identifying it' }
   ],
   conditionOptions: [
-    { value: 'any-presentable', label: 'Any presentable copy' },
+    { value: 'any-displayable', label: 'Any displayable copy' },
     { value: 'clean-raw', label: 'Clean raw copy' },
-    { value: 'grader-ready', label: 'Grader-ready if possible' },
-    { value: 'sealed-or-pack-fresh', label: 'Sealed or pack-fresh target' }
+    { value: 'high-end', label: 'High-end / premium example' },
+    { value: 'sealed-preferred', label: 'Sealed if that applies' }
   ]
 };

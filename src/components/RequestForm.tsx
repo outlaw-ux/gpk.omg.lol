@@ -113,7 +113,7 @@ export function RequestForm() {
             name="collectorName"
             type="text"
             autoComplete="name"
-            placeholder="Your name"
+            placeholder="Your collector name"
             required
             value={values.collectorName}
             onChange={handleChange}
@@ -139,7 +139,7 @@ export function RequestForm() {
             name="whatnotHandle"
             type="text"
             autoComplete="off"
-            placeholder="@yourwhatnot"
+            placeholder="@yourwhatnothandle"
             value={values.whatnotHandle}
             onChange={handleChange}
           />
@@ -162,7 +162,7 @@ export function RequestForm() {
             name="setName"
             type="text"
             autoComplete="off"
-            placeholder="Example: Original Series 1"
+            placeholder="Example: Chrome 7, OS1, InterGoolactic, etc."
             value={values.setName}
             onChange={handleChange}
           />
@@ -174,7 +174,7 @@ export function RequestForm() {
             name="cardNumber"
             type="text"
             autoComplete="off"
-            placeholder="Example: 1a"
+            placeholder="Example: 1a, C-12, SP-3"
             value={values.cardNumber}
             onChange={handleChange}
           />
@@ -186,7 +186,7 @@ export function RequestForm() {
             name="cardName"
             type="text"
             autoComplete="off"
-            placeholder="Example: Nasty Nick"
+            placeholder="Example: Nasty Nick, Adam Bomb, wrapper, sketch"
             value={values.cardName}
             onChange={handleChange}
           />
@@ -198,7 +198,7 @@ export function RequestForm() {
             name="variation"
             type="text"
             autoComplete="off"
-            placeholder="Parallel, artist auto, sketch, puzzle, etc."
+            placeholder="Parallel color, artist, sketch theme, promo type, wrapper notes, etc."
             value={values.variation}
             onChange={handleChange}
           />
@@ -226,7 +226,7 @@ export function RequestForm() {
             name="budgetNotes"
             type="text"
             autoComplete="off"
-            placeholder="Budget, trade range, or leave blank"
+            placeholder="Budget ceiling, trade range, or leave blank"
             value={values.budgetNotes}
             onChange={handleChange}
           />
@@ -237,7 +237,7 @@ export function RequestForm() {
           <textarea
             name="requestDetails"
             rows={7}
-            placeholder="Tell us what you need, how exact the match has to be, and anything already ruled out."
+            placeholder="Tell us what you want, how exact the match has to be, whether this is for display / grading / trade, and any gross little details that matter."
             required
             minLength={12}
             value={values.requestDetails}

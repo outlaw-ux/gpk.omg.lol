@@ -1,3 +1,4 @@
+import type { CSSProperties } from 'react';
 import { RequestForm } from './components/RequestForm';
 import { pageContent } from './data/siteContent';
 
@@ -6,102 +7,135 @@ function App() {
     <div className="app-shell">
       <main className="request-canvas">
         <div className="shell">
-          <header className="topbar">
-            <div className="brand-pill">
+          <header className="blast-banner">
+            <img
+              className="blast-banner__gpk-logo"
+              src={pageContent.brand.gpkLogoSrc}
+              alt="Garbage Pail Kids logo"
+            />
+
+            <div className="blast-banner__guild">
               <img
-                className="brand-pill__logo"
-                src={pageContent.brand.logoSrc}
+                className="blast-banner__guild-logo"
+                src={pageContent.brand.guildLogoSrc}
                 alt="Curator's Guild logo"
               />
 
               <div>
-                <p className="brand-pill__eyebrow">{pageContent.brand.eyebrow}</p>
-                <p className="brand-pill__name">{pageContent.brand.name}</p>
+                <p className="blast-banner__eyebrow">{pageContent.brand.eyebrow}</p>
+                <p className="blast-banner__title">{pageContent.brand.name}</p>
               </div>
             </div>
-
-            <p className="topbar__note">{pageContent.brand.note}</p>
           </header>
 
-          <section className="hero-grid" aria-labelledby="hero-heading">
-            <div className="hero-copy">
-              <p className="hero-copy__eyebrow">{pageContent.hero.eyebrow}</p>
-              <h1 id="hero-heading">{pageContent.hero.title}</h1>
-              <p className="hero-copy__description">{pageContent.hero.description}</p>
+          <section className="top-layout" aria-labelledby="hero-heading">
+            <div className="intro-stack">
+              <article className="intro-card">
+                <p className="intro-card__eyebrow">{pageContent.hero.eyebrow}</p>
+                <h1 id="hero-heading">{pageContent.hero.title}</h1>
+                <p className="intro-card__description">{pageContent.hero.description}</p>
 
-              <ul className="tag-row" aria-label="Request categories">
-                {pageContent.hero.tags.map((tag) => (
-                  <li key={tag}>{tag}</li>
-                ))}
-              </ul>
+                <ul className="slime-tags" aria-label="Request targets">
+                  {pageContent.hero.tags.map((tag) => (
+                    <li key={tag}>{tag}</li>
+                  ))}
+                </ul>
 
-              <div className="stat-grid">
-                {pageContent.hero.stats.map((stat) => (
-                  <article key={stat.label} className="stat-card">
-                    <span className="stat-card__value">{stat.value}</span>
-                    <span className="stat-card__label">{stat.label}</span>
-                  </article>
-                ))}
-              </div>
+                <div className="quick-callouts">
+                  {pageContent.hero.quickCallouts.map((item) => (
+                    <article key={item.title} className="quick-callout">
+                      <p>{item.title}</p>
+                      <span>{item.body}</span>
+                    </article>
+                  ))}
+                </div>
+              </article>
+
+              <aside
+                className="hero-art"
+                style={
+                  {
+                    '--chaos-collage': `url(${pageContent.art.collageSrc})`
+                  } as CSSProperties
+                }
+                aria-label="Garbage Pail Kids visuals"
+              >
+                <div className="hero-art__burst">
+                  <img
+                    className="hero-art__explosion"
+                    src={pageContent.art.explosionSrc}
+                    alt="Adam Bomb style explosion art"
+                  />
+                  <img
+                    className="hero-art__logo"
+                    src={pageContent.brand.guildLogoSrc}
+                    alt="Curator's Guild logo"
+                  />
+                </div>
+
+                <div className="hero-art__note">
+                  <p className="hero-art__kicker">{pageContent.art.noteEyebrow}</p>
+                  <p>{pageContent.art.noteBody}</p>
+                </div>
+              </aside>
             </div>
 
-            <aside className="logo-stage" aria-label="Request process overview">
-              <div className="logo-stage__frame">
-                <div className="logo-stage__halo" />
-                <img
-                  className="logo-stage__logo"
-                  src={pageContent.brand.logoSrc}
-                  alt="Curator's Guild logo"
-                />
-              </div>
-
-              <div className="process-stack">
-                {pageContent.process.map((step) => (
-                  <article key={step.step} className="process-card">
-                    <span className="process-card__step">{step.step}</span>
-                    <div>
-                      <h2>{step.title}</h2>
-                      <p>{step.description}</p>
-                    </div>
-                  </article>
-                ))}
-              </div>
-            </aside>
-          </section>
-
-          <section className="desk-grid">
-            <section className="form-card" aria-labelledby="request-form-heading">
-              <div className="section-head">
+            <section className="form-panel" aria-labelledby="request-form-heading">
+              <div className="panel-head panel-head--stacked">
                 <div>
-                  <p className="section-head__eyebrow">{pageContent.form.eyebrow}</p>
+                  <p className="panel-head__eyebrow">{pageContent.form.eyebrow}</p>
                   <h2 id="request-form-heading">{pageContent.form.title}</h2>
                 </div>
 
-                <p className="section-head__description">{pageContent.form.description}</p>
+                <p className="panel-head__description">{pageContent.form.description}</p>
               </div>
 
               <RequestForm />
-            </section>
 
-            <aside className="briefing-panel" aria-labelledby="briefing-heading">
-              <div className="section-head section-head--stacked">
-                <div>
-                  <p className="section-head__eyebrow">{pageContent.briefing.eyebrow}</p>
-                  <h2 id="briefing-heading">{pageContent.briefing.title}</h2>
-                </div>
-
-                <p className="section-head__description">{pageContent.briefing.description}</p>
-              </div>
-
-              <div className="briefing-list">
-                {pageContent.briefing.items.map((item) => (
-                  <article key={item.title} className="briefing-item">
+              <div className="form-callouts">
+                {pageContent.form.callouts.map((item) => (
+                  <article key={item.title} className="form-callout">
                     <h3>{item.title}</h3>
                     <p>{item.body}</p>
                   </article>
                 ))}
               </div>
+            </section>
+          </section>
+
+          <section className="support-grid">
+            <aside className="junk-drawer" aria-labelledby="junk-drawer-heading">
+              <div className="panel-head panel-head--stacked">
+                <div>
+                  <p className="panel-head__eyebrow">{pageContent.sidebar.eyebrow}</p>
+                  <h2 id="junk-drawer-heading">{pageContent.sidebar.title}</h2>
+                </div>
+
+                <p className="panel-head__description">{pageContent.sidebar.description}</p>
+              </div>
+
+              <div className="target-stack">
+                {pageContent.sidebar.targets.map((target) => (
+                  <article key={target.title} className="target-card">
+                    <span className="target-card__icon">{target.icon}</span>
+                    <div>
+                      <h3>{target.title}</h3>
+                      <p>{target.body}</p>
+                    </div>
+                  </article>
+                ))}
+              </div>
             </aside>
+
+            <div className="guild-grid">
+              {pageContent.sidebar.notes.map((note) => (
+                <article key={note.title} className="guild-card">
+                  <p className="guild-card__eyebrow">{note.eyebrow}</p>
+                  <h3>{note.title}</h3>
+                  <p>{note.body}</p>
+                </article>
+              ))}
+            </div>
           </section>
         </div>
       </main>
