@@ -7,13 +7,14 @@ function App() {
     <div className="app-shell">
       <main className="request-canvas">
         <div className="shell">
-          <header className="blast-banner">
-            <img
-              className="blast-banner__gpk-logo"
-              src={pageContent.brand.gpkLogoSrc}
-              alt="Garbage Pail Kids logo"
-            />
-
+          <header
+            className="blast-banner"
+            style={
+              {
+                '--blast-logo': `url(${pageContent.brand.gpkLogoSrc})`
+              } as CSSProperties
+            }
+          >
             <div className="blast-banner__guild">
               <img
                 className="blast-banner__guild-logo"

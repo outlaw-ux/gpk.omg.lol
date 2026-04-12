@@ -5,7 +5,7 @@ const collageSrc = `${import.meta.env.BASE_URL}art/gpk-collage.jpg`;
 
 export const pageContent = {
   brand: {
-    name: "Curator's Guild",
+    name: "Guild Hall",
     eyebrow: 'GPK hunt desk',
     guildLogoSrc,
     gpkLogoSrc
@@ -14,13 +14,14 @@ export const pageContent = {
     explosionSrc,
     collageSrc,
     noteEyebrow: 'Bounties live here',
-    noteBody: 'Use the form to post the missing piece and let the hunt start.'
+    noteBody:
+      'Use the form to post the missing piece and let the hunt start. Coming soon: a live bounty board with active collection hunts.'
   },
   hero: {
     eyebrow: 'Curate the collection. Post the bounty.',
     title: 'Request GPK cards, sketches, and weird collectibles.',
     description:
-      'This Guild Hall is where you post the missing pieces: singles, sketch cards, wrappers, promos, sealed oddities, and other gross grails.',
+      'The Guild Hall is where you post the missing pieces: singles, sketch cards, wrappers, promos, sealed oddities, and other gross grails.',
     tags: ['Singles', 'Sketches', 'Promos', 'Oddball pieces'],
     quickCallouts: [
       {
@@ -39,7 +40,7 @@ export const pageContent = {
   },
   form: {
     eyebrow: 'Post a request',
-    title: 'Send the hunt',
+    title: 'Start the hunt',
     description: 'Keep it short, specific, and collectible-focused.',
     callouts: [
       {
