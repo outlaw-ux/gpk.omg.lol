@@ -34,10 +34,11 @@ const conditionPreferences = new Set([
   'sealed-preferred'
 ]);
 const sourcePagePattern =
-  /^https:\/\/curatorsguild\.com(\/.*)?$|^http:\/\/localhost(?::[0-9]+)?(\/.*)?$|^http:\/\/127\.0\.0\.1(?::[0-9]+)?(\/.*)?$/;
+  /^https:\/\/(?:www\.)?curatorsguild\.com(\/.*)?$|^http:\/\/localhost(?::[0-9]+)?(\/.*)?$|^http:\/\/127\.0\.0\.1(?::[0-9]+)?(\/.*)?$/;
 
 const allowedOrigins = (
-  Deno.env.get('ALLOWED_ORIGINS') ?? 'https://curatorsguild.com'
+  Deno.env.get('ALLOWED_ORIGINS') ??
+  'https://www.curatorsguild.com,https://curatorsguild.com'
 )
   .split(',')
   .map((origin) => origin.trim())
@@ -146,7 +147,10 @@ const verifyTurnstileToken = async (token: string, remoteIp: string) => {
 
   const hostname = data.hostname ?? '';
   const hostnameAllowed =
-    hostname === 'curatorsguild.com' || hostname === 'localhost' || hostname === '127.0.0.1';
+    hostname === 'www.curatorsguild.com' ||
+    hostname === 'curatorsguild.com' ||
+    hostname === 'localhost' ||
+    hostname === '127.0.0.1';
 
   if (!data.success || data.action !== 'submit_card_request' || !hostnameAllowed) {
     return false;
@@ -192,7 +196,7 @@ Deno.serve(async (req) => {
   const requestDetails = payload.requestDetails?.trim() ?? '';
   const conditionPreference = payload.conditionPreference?.trim() ?? '';
   const turnstileToken = payload.turnstileToken?.trim() ?? '';
-  const sourcePage = payload.sourcePage?.trim() || 'https://curatorsguild.com';
+  const sourcePage = payload.sourcePage?.trim() || 'https://www.curatorsguild.com';
   const clientKey = readRemoteIp(req);
 
   if (collectorName.length < 2 || collectorName.length > 120) {
