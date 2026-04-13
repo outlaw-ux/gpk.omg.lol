@@ -1,6 +1,6 @@
 # The Guild Hall
 
-Single-purpose GPK request board for `curatorsguild.com`.
+Single-purpose GPK request board for `www.curatorsguild.com`.
 
 The current build runs a collector request form on GitHub Pages and sends submissions through a Supabase Edge Function before writing into Supabase.
 
@@ -78,4 +78,4 @@ Vite bakes these values into the production bundle during `npm run build`, so up
 npm run build
 ```
 
-The site is configured for GitHub Pages and includes a `public/CNAME` for `curatorsguild.com`.
+The site is configured for GitHub Pages and includes a `public/CNAME` for `www.curatorsguild.com`.

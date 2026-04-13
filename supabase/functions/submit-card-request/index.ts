@@ -195,7 +195,7 @@ Deno.serve(async (req) => {
   const requestDetails = payload.requestDetails?.trim() ?? '';
   const conditionPreference = payload.conditionPreference?.trim() ?? '';
   const turnstileToken = payload.turnstileToken?.trim() ?? '';
-  const sourcePage = payload.sourcePage?.trim() || 'https://curatorsguild.com';
+  const sourcePage = payload.sourcePage?.trim() || 'https://www.curatorsguild.com';
   const clientKey = readRemoteIp(req);
 
   if (collectorName.length < 2 || collectorName.length > 120) {

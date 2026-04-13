@@ -98,8 +98,8 @@ export const pageContent = {
   },
   footer: {
     copyright: '© Riverbend Vintage Trading Company LLC',
-    websiteLabel: 'curatorsguild.com',
-    websiteUrl: 'https://curatorsguild.com'
+    websiteLabel: 'www.curatorsguild.com',
+    websiteUrl: 'https://www.curatorsguild.com'
   }
 };
 
