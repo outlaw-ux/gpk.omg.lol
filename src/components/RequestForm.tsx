@@ -1,7 +1,13 @@
 import type { ChangeEvent, FormEvent } from 'react';
 import { useState } from 'react';
+import { TurnstileWidget } from './TurnstileWidget';
 import { requestFormContent } from '../data/siteContent';
-import { hasSupabaseConfig, supabase } from '../lib/supabase';
+import {
+  getRequestFormConfigMessage,
+  hasRequestFormConfig,
+  submitCardRequest,
+  turnstileSiteKey
+} from '../lib/requestApi';
 
 type SubmitState = 'idle' | 'submitting' | 'success' | 'error';
 
@@ -35,17 +41,12 @@ const initialValues: FormValues = {
   company: ''
 };
 
-const trimOrNull = (value: string) => {
-  const trimmed = value.trim();
-  return trimmed.length > 0 ? trimmed : null;
-};
-
 export function RequestForm() {
   const [values, setValues] = useState<FormValues>(initialValues);
   const [submitState, setSubmitState] = useState<SubmitState>('idle');
-  const [statusMessage, setStatusMessage] = useState(
-    hasSupabaseConfig ? '' : requestFormContent.configMessage
-  );
+  const [statusMessage, setStatusMessage] = useState(getRequestFormConfigMessage());
+  const [turnstileToken, setTurnstileToken] = useState('');
+  const [turnstileResetNonce, setTurnstileResetNonce] = useState(0);
 
   const handleChange = (
     event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
@@ -55,7 +56,7 @@ export function RequestForm() {
 
     if (submitState !== 'idle') {
       setSubmitState('idle');
-      setStatusMessage(hasSupabaseConfig ? '' : requestFormContent.configMessage);
+      setStatusMessage(getRequestFormConfigMessage());
     }
   };
 
@@ -64,44 +65,59 @@ export function RequestForm() {
 
     if (values.company.trim()) {
       setValues(initialValues);
+      setTurnstileToken('');
+      setTurnstileResetNonce((current) => current + 1);
       setSubmitState('success');
       setStatusMessage(requestFormContent.successMessage);
       return;
     }
 
-    if (!supabase) {
+    if (!hasRequestFormConfig) {
       setSubmitState('error');
-      setStatusMessage(requestFormContent.configMessage);
+      setStatusMessage(getRequestFormConfigMessage());
+      return;
+    }
+
+    if (!turnstileToken) {
+      setSubmitState('error');
+      setStatusMessage(requestFormContent.verificationMessage);
       return;
     }
 
     setSubmitState('submitting');
     setStatusMessage(requestFormContent.submittingMessage);
 
-    const { error } = await supabase.from('card_requests').insert({
-      collector_name: values.collectorName.trim(),
-      email: values.email.trim().toLowerCase(),
-      whatnot_handle: trimOrNull(values.whatnotHandle),
-      request_type: values.requestType,
-      set_name: trimOrNull(values.setName),
-      card_number: trimOrNull(values.cardNumber),
-      card_name: trimOrNull(values.cardName),
-      variation: trimOrNull(values.variation),
-      condition_preference: trimOrNull(values.conditionPreference),
-      budget_notes: trimOrNull(values.budgetNotes),
-      request_details: values.requestDetails.trim(),
-      source_page: window.location.href
-    });
+    try {
+      await submitCardRequest({
+        budgetNotes: values.budgetNotes,
+        cardName: values.cardName,
+        cardNumber: values.cardNumber,
+        collectorName: values.collectorName,
+        company: values.company,
+        conditionPreference: values.conditionPreference,
+        email: values.email,
+        requestDetails: values.requestDetails,
+        requestType: values.requestType,
+        setName: values.setName,
+        sourcePage: window.location.href,
+        turnstileToken,
+        variation: values.variation,
+        whatnotHandle: values.whatnotHandle
+      });
 
-    if (error) {
+      setValues(initialValues);
+      setTurnstileToken('');
+      setTurnstileResetNonce((current) => current + 1);
+      setSubmitState('success');
+      setStatusMessage(requestFormContent.successMessage);
+    } catch (error) {
+      setTurnstileToken('');
+      setTurnstileResetNonce((current) => current + 1);
       setSubmitState('error');
-      setStatusMessage(requestFormContent.errorMessage);
-      return;
+      setStatusMessage(
+        error instanceof Error && error.message ? error.message : requestFormContent.errorMessage
+      );
     }
-
-    setValues(initialValues);
-    setSubmitState('success');
-    setStatusMessage(requestFormContent.successMessage);
   };
 
   return (
@@ -262,6 +278,27 @@ export function RequestForm() {
         </label>
       </div>
 
+      {turnstileSiteKey ? (
+        <TurnstileWidget
+          resetNonce={turnstileResetNonce}
+          siteKey={turnstileSiteKey}
+          onError={(message) => {
+            if (message) {
+              setSubmitState('error');
+              setStatusMessage(message);
+            }
+          }}
+          onTokenChange={(token) => {
+            setTurnstileToken(token);
+
+            if (token && submitState === 'error') {
+              setSubmitState('idle');
+              setStatusMessage(getRequestFormConfigMessage());
+            }
+          }}
+        />
+      ) : null}
+
       <div className="form-footer">
         {statusMessage ? (
           <div className="status-block">
@@ -276,7 +313,7 @@ export function RequestForm() {
         <button
           className="submit-button"
           type="submit"
-          disabled={submitState === 'submitting' || !hasSupabaseConfig}
+          disabled={submitState === 'submitting' || !hasRequestFormConfig || !turnstileToken}
         >
           {submitState === 'submitting'
             ? requestFormContent.submitLabels.submitting
