@@ -23,6 +23,7 @@ declare global {
 
 const TURNSTILE_SCRIPT_ID = 'cf-turnstile-script';
 const TURNSTILE_SCRIPT_SRC = 'https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit';
+const TURNSTILE_SCRIPT_LOADED = 'true';
 
 let turnstileScriptPromise: Promise<void> | null = null;
 
@@ -39,6 +40,11 @@ const loadTurnstileScript = () => {
     const existingScript = document.getElementById(TURNSTILE_SCRIPT_ID) as HTMLScriptElement | null;
 
     if (existingScript) {
+      if (existingScript.dataset.loaded === TURNSTILE_SCRIPT_LOADED || window.turnstile) {
+        resolve();
+        return;
+      }
+
       existingScript.addEventListener('load', () => resolve(), { once: true });
       existingScript.addEventListener(
         'error',
@@ -53,7 +59,10 @@ const loadTurnstileScript = () => {
     script.src = TURNSTILE_SCRIPT_SRC;
     script.async = true;
     script.defer = true;
-    script.onload = () => resolve();
+    script.onload = () => {
+      script.dataset.loaded = TURNSTILE_SCRIPT_LOADED;
+      resolve();
+    };
     script.onerror = () => reject(new Error('Turnstile failed to load.'));
     document.head.append(script);
   });

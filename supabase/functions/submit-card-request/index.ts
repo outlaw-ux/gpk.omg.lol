@@ -43,10 +43,19 @@ const allowedOrigins = (
   .map((origin) => origin.trim())
   .filter(Boolean);
 
-const supabaseAdmin = createClient(
-  Deno.env.get('SUPABASE_URL') ?? '',
-  Deno.env.get('SUPABASE_SERVICE_ROLE_KEY') ?? ''
-);
+const TURNSTILE_VERIFY_TIMEOUT_MS = 5000;
+
+const requireEnv = (name: string) => {
+  const value = Deno.env.get(name)?.trim();
+
+  if (!value) {
+    throw new Error(`${name} is not configured.`);
+  }
+
+  return value;
+};
+
+const supabaseAdmin = createClient(requireEnv('SUPABASE_URL'), requireEnv('SUPABASE_SERVICE_ROLE_KEY'));
 
 const jsonResponse = (status: number, body: Record<string, string>, origin?: string | null) =>
   new Response(JSON.stringify(body), {
@@ -92,22 +101,13 @@ const enforceRateLimit = async (clientKey: string) => {
   return { allowed: true, message: '' };
 };
 
-const validateOrigin = (req: Request) => {
+const getAllowedOrigin = (req: Request) => {
   const origin = req.headers.get('origin');
-
-  if (!origin) {
-    return false;
-  }
-
-  return allowedOrigins.includes(origin);
+  return origin && allowedOrigins.includes(origin) ? origin : null;
 };
 
 const verifyTurnstileToken = async (token: string, remoteIp: string) => {
-  const secret = Deno.env.get('CLOUDFLARE_TURNSTILE_SECRET_KEY') ?? '';
-
-  if (!secret) {
-    throw new Error('CLOUDFLARE_TURNSTILE_SECRET_KEY is not configured.');
-  }
+  const secret = requireEnv('CLOUDFLARE_TURNSTILE_SECRET_KEY');
 
   const formData = new FormData();
   formData.append('secret', secret);
@@ -117,10 +117,21 @@ const verifyTurnstileToken = async (token: string, remoteIp: string) => {
     formData.append('remoteip', remoteIp);
   }
 
-  const response = await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', {
-    method: 'POST',
-    body: formData
-  });
+  let response: Response;
+
+  try {
+    response = await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', {
+      method: 'POST',
+      body: formData,
+      signal: AbortSignal.timeout(TURNSTILE_VERIFY_TIMEOUT_MS)
+    });
+  } catch (error) {
+    if (error instanceof Error && (error.name === 'TimeoutError' || error.name === 'AbortError')) {
+      throw new Error('Verification service timed out.');
+    }
+
+    throw error;
+  }
 
   if (!response.ok) {
     throw new Error('Verification service is unavailable.');
@@ -145,22 +156,22 @@ const verifyTurnstileToken = async (token: string, remoteIp: string) => {
 };
 
 Deno.serve(async (req) => {
-  const requestOrigin = req.headers.get('origin');
+  const allowedOrigin = getAllowedOrigin(req);
 
   if (req.method === 'OPTIONS') {
-    if (!validateOrigin(req)) {
+    if (!allowedOrigin) {
       return new Response('forbidden', { status: 403, headers: getCorsHeaders(null) });
     }
 
-    return new Response('ok', { headers: getCorsHeaders(requestOrigin) });
+    return new Response('ok', { headers: getCorsHeaders(allowedOrigin) });
   }
 
   if (req.method !== 'POST') {
-    return jsonResponse(405, { error: 'Method not allowed.' }, requestOrigin);
+    return jsonResponse(405, { error: 'Method not allowed.' }, allowedOrigin);
   }
 
-  if (!validateOrigin(req)) {
-    return jsonResponse(403, { error: 'Origin not allowed.' }, requestOrigin);
+  if (!allowedOrigin) {
+    return jsonResponse(403, { error: 'Origin not allowed.' }, null);
   }
 
   let payload: RequestPayload;
@@ -168,11 +179,11 @@ Deno.serve(async (req) => {
   try {
     payload = (await req.json()) as RequestPayload;
   } catch {
-    return jsonResponse(400, { error: 'Invalid request body.' }, requestOrigin);
+    return jsonResponse(400, { error: 'Invalid request body.' }, allowedOrigin);
   }
 
   if (trimOrNull(payload.company)) {
-    return jsonResponse(200, { message: 'Ignored.' }, requestOrigin);
+    return jsonResponse(200, { message: 'Ignored.' }, allowedOrigin);
   }
 
   const collectorName = payload.collectorName?.trim() ?? '';
@@ -188,71 +199,71 @@ Deno.serve(async (req) => {
     return jsonResponse(
       400,
       { error: 'Collector name must be between 2 and 120 characters.' },
-      requestOrigin
+      allowedOrigin
     );
   }
 
   if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-    return jsonResponse(400, { error: 'Enter a valid email address.' }, requestOrigin);
+    return jsonResponse(400, { error: 'Enter a valid email address.' }, allowedOrigin);
   }
 
   if (!requestTypes.has(requestType)) {
-    return jsonResponse(400, { error: 'Choose a valid request type.' }, requestOrigin);
+    return jsonResponse(400, { error: 'Choose a valid request type.' }, allowedOrigin);
   }
 
   if (!conditionPreferences.has(conditionPreference)) {
-    return jsonResponse(400, { error: 'Choose a valid condition target.' }, requestOrigin);
+    return jsonResponse(400, { error: 'Choose a valid condition target.' }, allowedOrigin);
   }
 
   if (!isWithinLength(payload.whatnotHandle, 120)) {
-    return jsonResponse(400, { error: 'Whatnot handle is too long.' }, requestOrigin);
+    return jsonResponse(400, { error: 'Whatnot handle is too long.' }, allowedOrigin);
   }
 
   if (!isWithinLength(payload.setName, 160)) {
-    return jsonResponse(400, { error: 'Set name is too long.' }, requestOrigin);
+    return jsonResponse(400, { error: 'Set name is too long.' }, allowedOrigin);
   }
 
   if (!isWithinLength(payload.cardNumber, 40)) {
-    return jsonResponse(400, { error: 'Card number is too long.' }, requestOrigin);
+    return jsonResponse(400, { error: 'Card number is too long.' }, allowedOrigin);
   }
 
   if (!isWithinLength(payload.cardName, 160)) {
-    return jsonResponse(400, { error: 'Card or collectible name is too long.' }, requestOrigin);
+    return jsonResponse(400, { error: 'Card or collectible name is too long.' }, allowedOrigin);
   }
 
   if (!isWithinLength(payload.variation, 240)) {
-    return jsonResponse(400, { error: 'Variation details are too long.' }, requestOrigin);
+    return jsonResponse(400, { error: 'Variation details are too long.' }, allowedOrigin);
   }
 
   if (!isWithinLength(payload.budgetNotes, 240)) {
-    return jsonResponse(400, { error: 'Budget or trade notes are too long.' }, requestOrigin);
+    return jsonResponse(400, { error: 'Budget or trade notes are too long.' }, allowedOrigin);
   }
 
   if (requestDetails.length < 12 || requestDetails.length > 3000) {
     return jsonResponse(400, {
       error: 'Request details must be between 12 and 3000 characters.'
-    }, requestOrigin);
+    }, allowedOrigin);
   }
 
   if (!sourcePagePattern.test(sourcePage)) {
-    return jsonResponse(400, { error: 'Source page is not allowed.' }, requestOrigin);
+    return jsonResponse(400, { error: 'Source page is not allowed.' }, allowedOrigin);
   }
 
   if (!turnstileToken) {
-    return jsonResponse(400, { error: 'Please complete the verification check.' }, requestOrigin);
+    return jsonResponse(400, { error: 'Please complete the verification check.' }, allowedOrigin);
   }
 
   try {
     const rateLimit = await enforceRateLimit(clientKey);
 
     if (!rateLimit.allowed) {
-      return jsonResponse(429, { error: rateLimit.message }, requestOrigin);
+      return jsonResponse(429, { error: rateLimit.message }, allowedOrigin);
     }
 
     const verified = await verifyTurnstileToken(turnstileToken, readRemoteIp(req));
 
     if (!verified) {
-      return jsonResponse(400, { error: 'Verification failed. Please try again.' }, requestOrigin);
+      return jsonResponse(400, { error: 'Verification failed. Please try again.' }, allowedOrigin);
     }
 
     const { error } = await supabaseAdmin.from('card_requests').insert({
@@ -272,15 +283,15 @@ Deno.serve(async (req) => {
 
     if (error) {
       console.error('submit-card-request insert failed', error);
-      return jsonResponse(500, { error: 'The request did not stick. Please try again.' }, requestOrigin);
+      return jsonResponse(500, { error: 'The request did not stick. Please try again.' }, allowedOrigin);
     }
 
-    return jsonResponse(200, { message: 'Request received.' }, requestOrigin);
+    return jsonResponse(200, { message: 'Request received.' }, allowedOrigin);
   } catch (error) {
     console.error('submit-card-request failed', error);
     return jsonResponse(500, {
       error:
         error instanceof Error ? error.message : 'The request could not be processed right now.'
-    }, requestOrigin);
+    }, allowedOrigin);
   }
 });

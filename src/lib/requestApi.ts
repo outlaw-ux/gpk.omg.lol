@@ -2,7 +2,7 @@ const supabaseUrl = import.meta.env.VITE_SUPABASE_URL?.trim();
 const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY?.trim();
 
 export const turnstileSiteKey = import.meta.env.VITE_TURNSTILE_SITE_KEY?.trim() ?? '';
-export const hasRequestApiConfig = Boolean(supabaseUrl);
+export const hasRequestApiConfig = Boolean(supabaseUrl && supabaseAnonKey);
 export const hasTurnstileConfig = Boolean(turnstileSiteKey);
 export const hasRequestFormConfig = hasRequestApiConfig && hasTurnstileConfig;
 
@@ -27,11 +27,11 @@ export type CardRequestPayload = {
 
 export const getRequestFormConfigMessage = () => {
   if (!hasRequestApiConfig && !hasTurnstileConfig) {
-    return 'Add VITE_SUPABASE_URL and VITE_TURNSTILE_SITE_KEY to enable protected submissions.';
+    return 'Add VITE_SUPABASE_URL, VITE_SUPABASE_ANON_KEY, and VITE_TURNSTILE_SITE_KEY to enable protected submissions.';
   }
 
   if (!hasRequestApiConfig) {
-    return 'Add VITE_SUPABASE_URL to enable the request API.';
+    return 'Add VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY to enable the request API.';
   }
 
   if (!hasTurnstileConfig) {
@@ -42,7 +42,7 @@ export const getRequestFormConfigMessage = () => {
 };
 
 export const submitCardRequest = async (payload: CardRequestPayload) => {
-  if (!requestApiUrl) {
+  if (!requestApiUrl || !supabaseAnonKey) {
     throw new Error(getRequestFormConfigMessage() || 'The request API is not configured.');
   }
 
@@ -50,7 +50,8 @@ export const submitCardRequest = async (payload: CardRequestPayload) => {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      ...(supabaseAnonKey ? { apikey: supabaseAnonKey } : {})
+      apikey: supabaseAnonKey,
+      Authorization: `Bearer ${supabaseAnonKey}`
     },
     body: JSON.stringify(payload)
   });
