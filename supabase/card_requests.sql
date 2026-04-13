@@ -23,7 +23,7 @@ create table if not exists public.card_requests (
   condition_preference text,
   budget_notes text,
   request_details text not null,
-  source_page text not null default 'https://curatorsguild.com',
+  source_page text not null default 'https://www.curatorsguild.com',
   status text not null default 'new'
 );
 
@@ -87,7 +87,7 @@ alter table public.card_requests
     check (char_length(request_details) between 12 and 3000),
   add constraint card_requests_source_page_allowed_check
     check (
-      source_page ~ '^https://curatorsguild\.com(/.*)?$'
+      source_page ~ '^https://(www\.)?curatorsguild\.com(/.*)?$'
       or source_page ~ '^http://localhost(:[0-9]+)?(/.*)?$'
       or source_page ~ '^http://127\.0\.0\.1(:[0-9]+)?(/.*)?$'
     ),

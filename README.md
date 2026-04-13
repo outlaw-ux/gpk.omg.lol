@@ -1,6 +1,6 @@
 # The Guild Hall
 
-Single-purpose GPK request board for `curatorsguild.com`.
+Single-purpose GPK request board for `www.curatorsguild.com`.
 
 The current build runs a collector request form on GitHub Pages and sends submissions through a Supabase Edge Function before writing into Supabase.
 
@@ -46,13 +46,13 @@ Set these in Supabase for the `submit-card-request` function:
 Suggested `ALLOWED_ORIGINS` value:
 
 ```text
-https://curatorsguild.com
+https://www.curatorsguild.com,https://curatorsguild.com
 ```
 
 If you want local browser testing against the hosted function, temporarily add your local origin as well:
 
 ```text
-https://curatorsguild.com,http://localhost:5173,http://127.0.0.1:5173
+https://www.curatorsguild.com,https://curatorsguild.com,http://localhost:5173,http://127.0.0.1:5173
 ```
 
 The function uses the built-in `SUPABASE_SERVICE_ROLE_KEY` secret to insert into `public.card_requests`, so the table no longer needs a public insert policy.
@@ -78,4 +78,4 @@ Vite bakes these values into the production bundle during `npm run build`, so up
 npm run build
 ```
 
-The site is configured for GitHub Pages and includes a `public/CNAME` for `curatorsguild.com`.
+The site is configured for GitHub Pages and includes a `public/CNAME` for `www.curatorsguild.com`.
