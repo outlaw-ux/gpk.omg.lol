@@ -3,6 +3,13 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script>
+      if (window.location.hostname === 'www.curatorsguild.com') {
+        const canonicalUrl = new URL(window.location.href);
+        canonicalUrl.hostname = 'curatorsguild.com';
+        window.location.replace(canonicalUrl.toString());
+      }
+    </script>
     <meta
       name="description"
       content="Request Garbage Pail Kids cards, sketches, promos, wrappers, and other gross collectibles through The Guild Hall on www.curatorsguild.com."
