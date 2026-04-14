@@ -25,8 +25,7 @@ function App() {
               className="blast-banner__promo"
               href={pageContent.headerPromo.href}
               target="_blank"
-              rel="noreferrer"
-              aria-label={`${pageContent.headerPromo.title} - ${pageContent.headerPromo.ctaLabel}`}
+              rel="noopener noreferrer"
             >
               <span className="blast-banner__promo-copy">
                 <span className="blast-banner__promo-eyebrow">
