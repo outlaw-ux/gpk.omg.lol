@@ -34,10 +34,11 @@ const conditionPreferences = new Set([
   'sealed-preferred'
 ]);
 const sourcePagePattern =
-  /^https:\/\/(www\.)?curatorsguild\.com(\/.*)?$|^http:\/\/localhost(?::[0-9]+)?(\/.*)?$|^http:\/\/127\.0\.0\.1(?::[0-9]+)?(\/.*)?$/;
+  /^https:\/\/(?:www\.)?curatorsguild\.com(\/.*)?$|^http:\/\/localhost(?::[0-9]+)?(\/.*)?$|^http:\/\/127\.0\.0\.1(?::[0-9]+)?(\/.*)?$/;
 
 const allowedOrigins = (
-  Deno.env.get('ALLOWED_ORIGINS') ?? 'https://curatorsguild.com,https://www.curatorsguild.com'
+  Deno.env.get('ALLOWED_ORIGINS') ??
+  'https://www.curatorsguild.com,https://curatorsguild.com'
 )
   .split(',')
   .map((origin) => origin.trim())
@@ -146,8 +147,8 @@ const verifyTurnstileToken = async (token: string, remoteIp: string) => {
 
   const hostname = data.hostname ?? '';
   const hostnameAllowed =
-    hostname === 'curatorsguild.com' ||
     hostname === 'www.curatorsguild.com' ||
+    hostname === 'curatorsguild.com' ||
     hostname === 'localhost' ||
     hostname === '127.0.0.1';
 
