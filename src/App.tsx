@@ -20,6 +20,24 @@ function App() {
                 <p className="blast-banner__subhead">{pageContent.brand.subhead}</p>
               </div>
             </div>
+
+            <a
+              className="blast-banner__promo"
+              href={pageContent.headerPromo.href}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <span className="blast-banner__promo-copy">
+                <span className="blast-banner__promo-eyebrow">
+                  {pageContent.headerPromo.eyebrow}
+                </span>
+                <span className="blast-banner__promo-title">{pageContent.headerPromo.title}</span>
+                <span className="blast-banner__promo-description">
+                  {pageContent.headerPromo.description}
+                </span>
+              </span>
+              <span className="blast-banner__promo-cta">{pageContent.headerPromo.ctaLabel}</span>
+            </a>
           </header>
 
           <section className="top-layout" aria-labelledby="hero-heading">

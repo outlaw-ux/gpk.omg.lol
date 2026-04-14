@@ -2,6 +2,7 @@ const guildLogoSrc = `${import.meta.env.BASE_URL}brand/curators-guild-logo.png`;
 const gpkLogoSrc = `${import.meta.env.BASE_URL}brand/garbage-pail-kids-logo.png`;
 const explosionSrc = `${import.meta.env.BASE_URL}art/gpk-explosion.png`;
 const collageSrc = `${import.meta.env.BASE_URL}art/gpk-collage.jpg`;
+const whatnotInviteUrl = 'https://whatnot.com/invite/curatorsguild';
 
 export const pageContent = {
   brand: {
@@ -9,6 +10,13 @@ export const pageContent = {
     subhead: 'GPK Bounty Board',
     guildLogoSrc,
     gpkLogoSrc
+  },
+  headerPromo: {
+    eyebrow: 'Whatnot follow',
+    title: "Follow Curator's Guild on Whatnot",
+    description: 'Use the invite link to follow along and claim $15 in free credits.',
+    href: whatnotInviteUrl,
+    ctaLabel: 'Get $15'
   },
   art: {
     explosionSrc,
