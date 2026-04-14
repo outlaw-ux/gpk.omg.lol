@@ -157,7 +157,7 @@ export function TurnstileWidget({
         widgetIdRef.current = null;
       }
     };
-  }, [emitError, emitTokenChange, resetNonce, siteKey]);
+  }, [resetNonce, siteKey]);
 
   return (
     <div className="turnstile-block">
