@@ -57,6 +57,32 @@ https://www.curatorsguild.com,https://curatorsguild.com,http://localhost:5173,ht
 
 The function uses the built-in `SUPABASE_SERVICE_ROLE_KEY` secret to insert into `public.card_requests`, so the table no longer needs a public insert policy.
 
+## Supabase keepalive
+
+Free-tier Supabase projects can pause after seven days of inactivity. This repo includes a separate `keepalive-db` Edge Function plus a scheduled GitHub Actions workflow that pings the database twice a week.
+
+Set this secret in Supabase for the `keepalive-db` function:
+
+- `KEEPALIVE_TOKEN`
+
+Set the same token in GitHub Actions:
+
+- `SUPABASE_KEEPALIVE_TOKEN`
+
+The workflow reuses `VITE_SUPABASE_URL` and calls:
+
+```text
+${VITE_SUPABASE_URL}/functions/v1/keepalive-db
+```
+
+Suggested token generation:
+
+```bash
+openssl rand -hex 32
+```
+
+The schedule lives in `.github/workflows/keepalive.yml` and runs on Mondays and Thursdays. That is intentionally more conservative than a six-day cadence because GitHub scheduled workflows are not guaranteed to run at an exact minute, and the free-tier inactivity window is seven days.
+
 ## GitHub Pages env setup
 
 This site deploys through GitHub Actions, so the browser-side values above must also be added as GitHub Actions secrets for the build.
@@ -67,6 +93,7 @@ This site deploys through GitHub Actions, so the browser-side values above must 
    - `VITE_SUPABASE_URL`
    - `VITE_SUPABASE_ANON_KEY`
    - `VITE_TURNSTILE_SITE_KEY`
+   - `SUPABASE_KEEPALIVE_TOKEN`
 4. Redeploy the Pages workflow after saving them.
 
 Deployment note:
