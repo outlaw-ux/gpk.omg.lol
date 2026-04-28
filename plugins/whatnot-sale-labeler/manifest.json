@@ -1,0 +1,22 @@
+{
+  "manifest_version": 3,
+  "name": "The Guild Hall Whatnot Sale Labeler",
+  "description": "Detect completed Whatnot sales and print compact 2 x 1 in seller labels.",
+  "version": "0.1.0",
+  "permissions": ["storage"],
+  "host_permissions": ["https://whatnot.com/*", "https://*.whatnot.com/*"],
+  "action": {
+    "default_title": "Whatnot Sale Labeler"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "options_page": "options.html",
+  "content_scripts": [
+    {
+      "matches": ["https://whatnot.com/*", "https://*.whatnot.com/*"],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ]
+}

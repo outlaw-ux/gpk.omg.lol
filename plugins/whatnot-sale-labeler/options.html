@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Whatnot Sale Labeler Options</title>
+    <link rel="stylesheet" href="options.css">
+  </head>
+  <body>
+    <main class="options-shell">
+      <header class="page-header">
+        <p class="eyebrow">The Guild Hall</p>
+        <h1>Whatnot Sale Labeler</h1>
+        <p class="lede">Configure 2 x 1 in labels for completed Whatnot auction sales.</p>
+      </header>
+
+      <section class="panel">
+        <h2>Printing</h2>
+        <label class="check-row">
+          <input id="enabled" type="checkbox">
+          <span>Run on Whatnot pages</span>
+        </label>
+        <label class="check-row">
+          <input id="autoPrint" type="checkbox">
+          <span>Print automatically after a completed sale is detected</span>
+        </label>
+        <label class="check-row">
+          <input id="debugMode" type="checkbox">
+          <span>Show debug status on Whatnot pages</span>
+        </label>
+        <label class="field-row">
+          <span>Dedupe window, minutes</span>
+          <input id="dedupeMinutes" type="number" min="1" max="1440" step="1">
+        </label>
+      </section>
+
+      <section class="panel">
+        <h2>Label Image</h2>
+        <div class="image-grid">
+          <div class="preview-box">
+            <img id="imagePreview" alt="">
+            <span id="imagePlaceholder">No image selected</span>
+          </div>
+          <div class="image-controls">
+            <label class="field-row">
+              <span>Custom image</span>
+              <input id="labelImage" type="file" accept="image/*">
+            </label>
+            <label class="field-row">
+              <span>Image fit</span>
+              <select id="labelImageFit">
+                <option value="contain">Contain</option>
+                <option value="cover">Cover</option>
+              </select>
+            </label>
+            <button id="clearImage" class="secondary-button" type="button">Clear image</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2>Advanced Detection</h2>
+        <p class="hint">Tune these only when Whatnot changes its seller interface or the debug status shows missed sales.</p>
+        <label class="field-row">
+          <span>Minimum confidence</span>
+          <input id="minConfidence" type="number" min="1" max="6" step="1">
+        </label>
+        <label class="field-row stacked">
+          <span>Completed text pattern</span>
+          <input id="completedTextPattern" type="text" spellcheck="false">
+        </label>
+        <label class="field-row stacked">
+          <span>Ignored text pattern</span>
+          <input id="ignoredTextPattern" type="text" spellcheck="false">
+        </label>
+        <label class="field-row stacked">
+          <span>Sale container selector</span>
+          <textarea id="containerSelector" rows="3" spellcheck="false"></textarea>
+        </label>
+        <label class="field-row stacked">
+          <span>Product selector</span>
+          <textarea id="productSelector" rows="2" spellcheck="false"></textarea>
+        </label>
+        <label class="field-row stacked">
+          <span>Lot selector</span>
+          <textarea id="lotSelector" rows="2" spellcheck="false"></textarea>
+        </label>
+        <label class="field-row stacked">
+          <span>Price selector</span>
+          <textarea id="priceSelector" rows="2" spellcheck="false"></textarea>
+        </label>
+        <label class="field-row stacked">
+          <span>Username selector</span>
+          <textarea id="usernameSelector" rows="2" spellcheck="false"></textarea>
+        </label>
+      </section>
+
+      <footer class="actions">
+        <button id="saveButton" type="button">Save settings</button>
+        <button id="testPrintButton" class="secondary-button" type="button">Print test label</button>
+        <p id="status" role="status" aria-live="polite"></p>
+      </footer>
+    </main>
+
+    <script src="options.js"></script>
+  </body>
+</html>
+
